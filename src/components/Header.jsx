@@ -35,9 +35,6 @@ export default function Header({
               <span className="font-serif-italic text-lg font-bold text-[#8C183C]">
                 Café &amp; Bakery
               </span>
-              <span className="hidden sm:inline-block bg-[#EDF5D3] text-[#4A5E1A] border border-[#DCE8B2] text-[10px] font-bold px-2 py-0.5 rounded-full">
-                Artisan
-              </span>
             </div>
             <span className="text-[10px] text-[#8C4A60] font-medium tracking-wide block -mt-1 font-cursive text-sm">
               sweet sips &amp; freshly baked treats
