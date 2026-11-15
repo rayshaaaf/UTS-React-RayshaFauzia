@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles, Heart } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -24,8 +24,8 @@ export default function Footer() {
 
         {/* Right: Copyright & Love */}
         <div className="text-xs text-white/60 flex items-center justify-center sm:justify-end gap-1.5">
-          <span>Crafted with</span>
-          <Heart className="w-3.5 h-3.5 fill-[#EE4B82] text-[#EE4B82]" />
+          <span>Raysha Fauzia Andani</span>
+          <span>||</span>
           <span>© 2026 Rosé Café &amp; Bakery. All rights reserved.</span>
         </div>
 

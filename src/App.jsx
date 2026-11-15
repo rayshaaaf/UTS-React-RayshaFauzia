@@ -112,6 +112,29 @@ function AppContent() {
   // HANDLERS
   // --------------------------------------------------------------------------
 
+  // Action: Klik Logo Home -> Reset pencarian, kategori 'Semua', dan sort 'default'
+  const handleResetHome = () => {
+    setSearchQuery('');
+    setCurrentCategory('Semua');
+    setSortOption('default');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Action: Pilih Kategori -> jika sebelumnya sort khusus favorit dan pindah ke kategori lain, otomatis reset
+  const handleSelectCategory = (category) => {
+    setCurrentCategory(category);
+    if ((sortOption === 'fav-newest' || sortOption === 'fav-oldest') && category !== 'Favorit') {
+      setSortOption('default');
+    }
+  };
+
+  // Action: Reset Seluruh Filter (Kategori, Pencarian, Sort)
+  const handleResetAllFilters = () => {
+    setSearchQuery('');
+    setCurrentCategory('Semua');
+    setSortOption('default');
+  };
+
   // Action: Tambah ke Keranjang dengan batas stok
   const handleAddToCart = (product) => {
     const existingInCart = cartItems.find((c) => c.id === product.id);
@@ -262,17 +285,17 @@ function AppContent() {
       result = result.filter((item) => item.category === currentCategory);
     }
 
-    // Filter Pencarian
+    // Filter Pencarian: HANYA mencocokkan Nama Menu agar akurat & sesuai ekspektasi pengguna!
     if (searchQuery.trim() !== '') {
-      const q = searchQuery.toLowerCase();
-      result = result.filter(
-        (item) => item.name.toLowerCase().includes(q) || item.description.toLowerCase().includes(q)
-      );
+      const q = searchQuery.toLowerCase().trim();
+      result = result.filter((item) => item.name.toLowerCase().includes(q));
     }
 
     // Sortir
     if (sortOption === 'price-asc') {
       result.sort((a, b) => a.price - b.price);
+    } else if (sortOption === 'price-desc') {
+      result.sort((a, b) => b.price - a.price);
     } else if (sortOption === 'rating') {
       result.sort((a, b) => b.rating - a.rating);
     } else if (sortOption === 'name') {
@@ -293,6 +316,7 @@ function AppContent() {
       <Header
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
+        onResetHome={handleResetHome}
         onOpenCart={() => setIsCartOpen(true)}
         onOpenHistory={() => setIsHistoryOpen(true)}
         onOpenNotifications={() => setIsNotifOpen(true)}
@@ -305,10 +329,11 @@ function AppContent() {
           favorites={favorites}
           cartItems={cartItems}
           currentCategory={currentCategory}
-          onSelectCategory={setCurrentCategory}
+          onSelectCategory={handleSelectCategory}
           sortOption={sortOption}
           onSortChange={setSortOption}
           searchQuery={searchQuery}
+          onResetFilters={handleResetAllFilters}
           onInfo={handleOpenInfo}
           onToggleFavorite={handleToggleFavorite}
           onComment={handleOpenComment}

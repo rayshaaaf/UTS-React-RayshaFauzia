@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, Heart, ChevronDown, Sparkles, Coffee, Cake, Croissant as CroissantIcon } from 'lucide-react';
+import { Search, Heart, ChevronDown, Sparkles, Coffee, Cake, Croissant as CroissantIcon, RotateCcw } from 'lucide-react';
 import MenuCard from './MenuCard';
 
 export default function MainContent({
@@ -11,6 +11,7 @@ export default function MainContent({
   sortOption = 'default',
   onSortChange,
   searchQuery = '',
+  onResetFilters,
   onInfo,
   onToggleFavorite,
   onComment,
@@ -34,11 +35,34 @@ export default function MainContent({
   const sortLabels = {
     default: 'Urutkan Menu',
     'price-asc': 'Harga Terendah',
+    'price-desc': 'Harga Tertinggi',
     'rating': 'Rating Tertinggi',
     'name': 'Nama (A-Z)',
     'fav-newest': 'Favorit Terbaru',
     'fav-oldest': 'Favorit Terlama'
   };
+
+  const isFavTab = currentCategory === 'Favorit';
+
+  const sortOptionsList = isFavTab
+    ? [
+        { id: 'default', label: 'Default Rekomendasi' },
+        { id: 'fav-newest', label: 'Favorit Terbaru' },
+        { id: 'fav-oldest', label: 'Favorit Terlama' },
+        { id: 'price-asc', label: 'Harga Terendah' },
+        { id: 'price-desc', label: 'Harga Tertinggi' },
+        { id: 'rating', label: 'Rating Tertinggi' },
+        { id: 'name', label: 'Nama (A-Z)' }
+      ]
+    : [
+        { id: 'default', label: 'Default Rekomendasi' },
+        { id: 'price-asc', label: 'Harga Terendah' },
+        { id: 'price-desc', label: 'Harga Tertinggi' },
+        { id: 'rating', label: 'Rating Tertinggi' },
+        { id: 'name', label: 'Nama (A-Z)' }
+      ];
+
+  const hasActiveFilters = searchQuery.trim() !== '' || currentCategory !== 'Semua' || sortOption !== 'default';
 
   let subtitleText = '15 pilihan kopi segar & artisan pastry lezat untuk harimu.';
   if (searchQuery.trim()) {
@@ -150,7 +174,7 @@ export default function MainContent({
           </div>
         </div>
 
-        {/* Filter Pills & Sort Dropdown */}
+        {/* Filter Pills, Reset Button & Sort Dropdown */}
         <div className="flex flex-wrap items-center justify-between gap-4 mb-10">
           
           {/* Category Tabs */}
@@ -173,6 +197,18 @@ export default function MainContent({
                 </button>
               );
             })}
+
+            {/* Quick Reset Filter Button */}
+            {hasActiveFilters && (
+              <button
+                onClick={onResetFilters}
+                className="bg-[#FFEBF2] hover:bg-[#FFD4E5] text-[#EE4B82] border border-[#FFD4E5] rounded-full px-4 py-2 text-xs font-bold transition-colors cursor-pointer flex items-center gap-1.5 shadow-2xs ml-1"
+                title="Reset semua filter, kategori, dan pengurutan"
+              >
+                <RotateCcw className="w-3 h-3" />
+                <span>Reset Filter</span>
+              </button>
+            )}
           </div>
 
           {/* Sort Dropdown */}
@@ -192,14 +228,7 @@ export default function MainContent({
                   onClick={() => setIsSortOpen(false)}
                 />
                 <div className="absolute right-0 mt-2 w-52 bg-white rounded-2xl shadow-xl border border-[#FFD4E5] py-2 z-30 animate-fade-in text-xs font-semibold">
-                  {[
-                    { id: 'default', label: 'Default Rekomendasi' },
-                    { id: 'price-asc', label: 'Harga Terendah' },
-                    { id: 'rating', label: 'Rating Tertinggi' },
-                    { id: 'name', label: 'Nama (A-Z)' },
-                    { id: 'fav-newest', label: 'Favorit Terbaru' },
-                    { id: 'fav-oldest', label: 'Favorit Terlama' }
-                  ].map((opt) => (
+                  {sortOptionsList.map((opt) => (
                     <button
                       key={opt.id}
                       onClick={() => {
@@ -229,9 +258,15 @@ export default function MainContent({
               <h3 className="font-brand text-2xl font-bold text-[#421525] mb-1.5">
                 Menu Tidak Ditemukan
               </h3>
-              <p className="text-xs sm:text-sm text-[#7D4759] max-w-md">
-                Tidak ada menu yang cocok dengan kata kunci “{searchQuery}”. Coba cari kata kunci lainnya.
+              <p className="text-xs sm:text-sm text-[#7D4759] max-w-md mb-4">
+                Tidak ada menu bernama “{searchQuery}”. Coba kata kunci nama menu lainnya.
               </p>
+              <button
+                onClick={onResetFilters}
+                className="bg-[#FFEBF2] hover:bg-[#FFD4E5] text-[#EE4B82] font-bold text-xs px-5 py-2 rounded-full border border-[#FFD4E5] cursor-pointer transition-colors"
+              >
+                Tampilkan Semua Menu
+              </button>
             </div>
           ) : (
             /* Favorite Empty State */

@@ -6,6 +6,7 @@ import { useNotification } from '../context/NotificationContext';
 export default function Header({
   searchQuery,
   onSearchChange,
+  onResetHome,
   onOpenCart,
   onOpenHistory,
   onOpenNotifications
@@ -14,16 +15,14 @@ export default function Header({
   const { unreadCount } = useNotification();
 
   return (
-    <header className="sticky top-0 z-40 bg-[#FFF2F6]/90 backdrop-blur-md border-b border-[#FFD4E5] px-6 lg:px-14 py-3.5 transition-all">
+    <header className="sticky top-0 z-40 bg-[#FFF2F6] border-b border-[#FFD4E5] px-6 lg:px-14 py-3.5 transition-all shadow-xs">
       <div className="max-w-[1400px] mx-auto flex items-center justify-between gap-4 sm:gap-6">
         
-        {/* Left: Brand Logo Rosé Café & Bakery */}
+        {/* Left: Brand Logo Rosé Café & Bakery (Click to go Home & Reset Filters) */}
         <div 
-          onClick={() => {
-            onSearchChange('');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }}
+          onClick={onResetHome}
           className="cursor-pointer select-none flex items-center gap-2.5 group"
+          title="Kembali ke Beranda & Reset Filter"
         >
           <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-[#FF6B9E] to-[#EE4B82] flex items-center justify-center text-white shadow-md shadow-pink-200 group-hover:scale-105 transition-transform">
             <Sparkles className="w-5 h-5" />
@@ -49,14 +48,14 @@ export default function Header({
             type="text"
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
-            placeholder="Cari kopi, pastry, atau cake manis..."
+            placeholder="Cari nama menu (contoh: cocoa, macaron, croissant)..."
             className="w-full bg-white border border-[#FFD4E5] rounded-full py-2.5 pl-11 pr-10 text-xs sm:text-sm text-[#421525] placeholder:text-[#A06375] focus:outline-none focus:border-[#FF6B9E] focus:ring-4 focus:ring-[#FFD4E5]/50 shadow-xs transition-all"
           />
           <Search className="absolute left-4 top-3 w-4 h-4 text-[#EE4B82]" strokeWidth={2} />
           {searchQuery && (
             <button
               onClick={() => onSearchChange('')}
-              className="absolute right-3.5 top-2.5 text-[#A06375] hover:text-[#EE4B82] transition-colors"
+              className="absolute right-3.5 top-2.5 text-[#A06375] hover:text-[#EE4B82] transition-colors cursor-pointer"
               title="Hapus pencarian"
             >
               <X className="w-4 h-4" />
