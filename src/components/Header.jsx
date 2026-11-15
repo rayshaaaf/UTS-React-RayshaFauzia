@@ -15,7 +15,7 @@ export default function Header({
   const { unreadCount } = useNotification();
 
   return (
-    <header className="sticky top-0 z-40 bg-[#FFF2F6] border-b border-[#FFD4E5] px-6 lg:px-14 py-3.5 transition-all shadow-xs">
+    <header className="sticky top-0 z-40 bg-[#FFF9F4]/95 backdrop-blur-md border-b border-[#FFDFEC] px-6 lg:px-14 py-3.5 transition-all shadow-xs">
       <div className="max-w-[1400px] mx-auto flex items-center justify-between gap-4 sm:gap-6">
         
         {/* Left: Brand Logo Rosé Café & Bakery (Click to go Home & Reset Filters) */}
@@ -24,19 +24,22 @@ export default function Header({
           className="cursor-pointer select-none flex items-center gap-2.5 group"
           title="Kembali ke Beranda & Reset Filter"
         >
-          <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-[#FF6B9E] to-[#EE4B82] flex items-center justify-center text-white shadow-md shadow-pink-200 group-hover:scale-105 transition-transform">
+          <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-[#FF6B9E] to-[#8C183C] flex items-center justify-center text-white shadow-md shadow-rose-950/20 group-hover:scale-105 transition-transform">
             <Sparkles className="w-5 h-5" />
           </div>
           <div>
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center gap-2">
               <span className="font-brand text-2xl font-black tracking-tight text-[#421525]">
                 Rosé
               </span>
-              <span className="font-serif-italic text-lg font-bold text-[#EE4B82]">
+              <span className="font-serif-italic text-lg font-bold text-[#8C183C]">
                 Café &amp; Bakery
               </span>
+              <span className="hidden sm:inline-block bg-[#EDF5D3] text-[#4A5E1A] border border-[#DCE8B2] text-[10px] font-bold px-2 py-0.5 rounded-full">
+                Artisan
+              </span>
             </div>
-            <span className="text-[10px] text-[#8C4A60] font-medium tracking-wide block -mt-1">
+            <span className="text-[10px] text-[#8C4A60] font-medium tracking-wide block -mt-1 font-cursive text-sm">
               sweet sips &amp; freshly baked treats
             </span>
           </div>
@@ -49,13 +52,13 @@ export default function Header({
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
             placeholder="Cari nama menu (contoh: cocoa, macaron, croissant)..."
-            className="w-full bg-white border border-[#FFD4E5] rounded-full py-2.5 pl-11 pr-10 text-xs sm:text-sm text-[#421525] placeholder:text-[#A06375] focus:outline-none focus:border-[#FF6B9E] focus:ring-4 focus:ring-[#FFD4E5]/50 shadow-xs transition-all"
+            className="w-full bg-white/90 border border-[#FFDFEC] rounded-full py-2.5 pl-11 pr-10 text-xs sm:text-sm text-[#421525] placeholder:text-[#A06375] focus:outline-none focus:border-[#8C183C] focus:ring-4 focus:ring-[#FFD4E5]/50 shadow-xs transition-all"
           />
-          <Search className="absolute left-4 top-3 w-4 h-4 text-[#EE4B82]" strokeWidth={2} />
+          <Search className="absolute left-4 top-3 w-4 h-4 text-[#8C183C]" strokeWidth={2} />
           {searchQuery && (
             <button
               onClick={() => onSearchChange('')}
-              className="absolute right-3.5 top-2.5 text-[#A06375] hover:text-[#EE4B82] transition-colors cursor-pointer"
+              className="absolute right-3.5 top-2.5 text-[#A06375] hover:text-[#8C183C] transition-colors cursor-pointer"
               title="Hapus pencarian"
             >
               <X className="w-4 h-4" />
@@ -70,11 +73,11 @@ export default function Header({
           <button
             onClick={onOpenNotifications}
             title="Buka Notifikasi"
-            className="relative w-10 h-10 rounded-full bg-white border border-[#FFD4E5] hover:bg-[#FFE4EE] hover:border-[#FF6B9E] text-[#421525] hover:text-[#EE4B82] flex items-center justify-center transition-all shadow-xs cursor-pointer group"
+            className="relative w-10 h-10 rounded-full bg-white border border-[#FFDFEC] hover:bg-[#FFEBF2] hover:border-[#8C183C] text-[#421525] hover:text-[#8C183C] flex items-center justify-center transition-all shadow-xs cursor-pointer group"
           >
             <Bell className="w-5 h-5 transition-transform group-hover:scale-110" strokeWidth={2} />
             {unreadCount > 0 && (
-              <span className="absolute -top-1 -right-1 bg-[#EE4B82] text-white text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center border-2 border-white shadow-sm">
+              <span className="absolute -top-1 -right-1 bg-[#8C183C] text-white text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center border-2 border-white shadow-sm">
                 {unreadCount}
               </span>
             )}
@@ -84,7 +87,7 @@ export default function Header({
           <button
             onClick={onOpenHistory}
             title="Riwayat Transaksi"
-            className="relative w-10 h-10 rounded-full bg-white border border-[#FFD4E5] hover:bg-[#FFE4EE] hover:border-[#FF6B9E] text-[#421525] hover:text-[#EE4B82] flex items-center justify-center transition-all shadow-xs cursor-pointer group"
+            className="relative w-10 h-10 rounded-full bg-white border border-[#FFDFEC] hover:bg-[#FFEBF2] hover:border-[#8C183C] text-[#421525] hover:text-[#8C183C] flex items-center justify-center transition-all shadow-xs cursor-pointer group"
           >
             <History className="w-5 h-5 transition-transform group-hover:scale-110" strokeWidth={2} />
           </button>
@@ -93,7 +96,7 @@ export default function Header({
           <button
             onClick={onOpenCart}
             title="Buka Keranjang Belanja"
-            className="relative w-10 h-10 rounded-full bg-gradient-to-r from-[#FF6B9E] to-[#EE4B82] text-white flex items-center justify-center shadow-md shadow-pink-300/40 hover:scale-105 active:scale-95 transition-all cursor-pointer group"
+            className="relative w-10 h-10 rounded-full bg-gradient-to-r from-[#FF6B9E] to-[#8C183C] text-white flex items-center justify-center shadow-md shadow-rose-950/20 hover:scale-105 active:scale-95 transition-all cursor-pointer group"
           >
             <ShoppingCart className="w-5 h-5 transition-transform group-hover:scale-110" strokeWidth={2} />
             {totalItemCount > 0 && (

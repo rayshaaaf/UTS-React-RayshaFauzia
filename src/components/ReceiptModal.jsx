@@ -78,7 +78,7 @@ export default function ReceiptModal({ isOpen, onClose, receiptData }) {
           <span className="font-brand font-bold text-base text-[#421525]">
             Total Bayar
           </span>
-          <span className="font-brand font-black text-2xl text-[#EE4B82]">
+          <span className="font-brand font-black text-2xl text-[#8C183C]">
             {formatRupiah(receiptData.total)}
           </span>
         </div>
@@ -86,7 +86,7 @@ export default function ReceiptModal({ isOpen, onClose, receiptData }) {
         {/* Tutup Button */}
         <button
           onClick={onClose}
-          className="w-full py-3.5 mt-3 rounded-2xl bg-gradient-to-r from-[#FF6B9E] to-[#EE4B82] hover:opacity-95 text-white font-bold text-sm shadow-md shadow-pink-200 transition-all cursor-pointer flex items-center justify-center gap-2"
+          className="w-full py-3.5 mt-3 rounded-2xl bg-[#8C183C] hover:opacity-95 text-white font-bold text-sm shadow-md shadow-rose-950/20 transition-all cursor-pointer flex items-center justify-center gap-2"
         >
           <Check className="w-4 h-4" />
           <span>Simpan &amp; Tutup Struk</span>

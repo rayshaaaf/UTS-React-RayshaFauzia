@@ -22,11 +22,16 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* Right: Copyright & Love */}
-        <div className="text-xs text-white/60 flex items-center justify-center sm:justify-end gap-1.5">
-          <span>Raysha Fauzia Andani</span>
-          <span>||</span>
-          <span>© 2026 Rosé Café &amp; Bakery. All rights reserved.</span>
+        {/* Right: Copyright & Attribution */}
+        <div className="flex flex-col sm:items-end items-center gap-1 text-xs text-white/70">
+          <div className="flex items-center gap-2">
+            <span className="font-bold text-white">Raysha Fauzia Andani</span>
+            <span className="text-white/40">·</span>
+            <span className="bg-white/10 text-white/90 text-[10px] font-semibold px-2 py-0.5 rounded-full border border-white/10">
+              UTS React Fundamental 2026
+            </span>
+          </div>
+          <span className="text-white/50 text-[11px]">© 2026 Rosé Café &amp; Bakery. All rights reserved.</span>
         </div>
 
       </div>

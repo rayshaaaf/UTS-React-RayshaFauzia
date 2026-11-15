@@ -20,17 +20,15 @@ export default function MainContent({
 }) {
   const [isSortOpen, setIsSortOpen] = useState(false);
 
-  // Category counts
-  const categoryCounts = {
-    Semua: 15,
-    Kopi: 4,
-    'Non-Kopi': 4,
-    Bakery: 3,
-    Cakes: 4,
-    Favorit: favorites.length
-  };
-
-  const categories = ['Semua', 'Kopi', 'Non-Kopi', 'Bakery', 'Cakes', 'Favorit'];
+  // Category counts and definitions matching UTS Rubric & Cafe & Bakery aesthetic
+  const categories = [
+    { id: 'Semua', label: 'Semua', count: 15 },
+    { id: 'Kopi', label: 'Kopi', count: 4 },
+    { id: 'Non-Kopi', label: 'Non-Kopi', count: 4 },
+    { id: 'Makanan', label: 'Makanan (Bakery)', count: 3 },
+    { id: 'Snack', label: 'Snack (Cakes)', count: 4 },
+    { id: 'Favorit', label: 'Favorit', count: favorites.length }
+  ];
 
   const sortLabels = {
     default: 'Urutkan Menu',
@@ -75,41 +73,45 @@ export default function MainContent({
     <div className="w-full">
       
       {/* ==================================================== */}
-      {/* 1. CHILL HERO SECTION (Cute Pastel Café Vibes)       */}
+      {/* 1. CHILL HERO SECTION (Frosty Ice Cream & Bakery Vibes) */}
       {/* ==================================================== */}
-      <section className="relative w-full bg-gradient-to-b from-[#FFE4EE]/70 via-[#FFF0F5] to-[#FFF2F6] pt-10 pb-16 px-6 lg:px-14 overflow-hidden border-b border-[#FFD4E5]/80">
+      <section className="relative w-full bg-gradient-to-b from-[#FFF6EA]/90 via-[#FFF0F5] to-[#FFF5F8] pt-10 pb-16 px-6 lg:px-14 overflow-hidden border-b border-[#FFD4E5]/80">
         
         {/* Soft Background Blur Blobs */}
-        <div className="absolute -top-16 -left-16 w-80 h-80 bg-pink-200/50 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -top-16 -left-16 w-80 h-80 bg-amber-100/60 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute top-20 right-10 w-96 h-96 bg-rose-200/40 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-[1400px] mx-auto flex flex-col lg:flex-row items-center justify-between gap-10 relative z-10">
           
           {/* Left: Chill Headline & Badges */}
           <div className="flex-1 max-w-2xl text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 bg-white/90 border border-[#FFD4E5] px-4 py-1.5 rounded-full text-xs font-bold text-[#EE4B82] shadow-xs mb-5">
-              <Sparkles className="w-4 h-4 text-[#EE4B82]" />
-              <span>Sweet Sips &amp; Freshly Baked Love Everyday</span>
+            <div className="inline-flex items-center gap-2 bg-[#EDF5D3] border border-[#DCE8B2] px-4 py-1.5 rounded-full text-xs font-bold text-[#4A5E1A] shadow-xs mb-3">
+              <Sparkles className="w-4 h-4 text-[#4A5E1A]" />
+              <span>Sweet Moments · 100% Artisan Café &amp; Bakery</span>
             </div>
 
+            <span className="font-cursive text-2xl sm:text-3xl text-[#8C183C] block mb-1">
+              fresh &amp; handmade with real fruit &amp; butter
+            </span>
+
             <h1 className="font-brand text-4xl sm:text-6xl font-black text-[#421525] tracking-tight leading-[1.1] mb-3">
-              Chill Vibes, Sweet Treats &amp; <span className="font-serif-italic font-normal text-[#EE4B82]">Warm Bakes.</span>
+              Chill Vibes, Sweet Treats &amp; <span className="font-serif-italic font-normal text-[#8C183C]">Warm Bakes.</span>
             </h1>
 
             <p className="text-sm sm:text-base text-[#7D4759] leading-relaxed max-w-xl mx-auto lg:mx-0 mb-6 font-normal">
               Nikmati perpaduan kopi artisan, minuman dingin menyegarkan, hingga aneka pastry &amp; cake manis yang dibuat hangat setiap hari.
             </p>
 
-            {/* Cute highlight chips */}
+            {/* Cute highlight chips with Frosty pastel tones */}
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5">
-              <span className="bg-white/80 border border-[#FFD4E5] px-3.5 py-1.5 rounded-full text-xs font-semibold text-[#421525] flex items-center gap-1.5 shadow-2xs">
-                <Coffee className="w-3.5 h-3.5 text-[#EE4B82]" /> Specialty Brew
+              <span className="bg-[#FFF6EA] border border-[#FED7AA] px-3.5 py-1.5 rounded-full text-xs font-bold text-[#8C4A20] flex items-center gap-1.5 shadow-2xs">
+                <Coffee className="w-3.5 h-3.5 text-[#8C4A20]" /> Specialty Brew
               </span>
-              <span className="bg-white/80 border border-[#FFD4E5] px-3.5 py-1.5 rounded-full text-xs font-semibold text-[#421525] flex items-center gap-1.5 shadow-2xs">
-                <CroissantIcon className="w-3.5 h-3.5 text-[#EE4B82]" /> Fresh Bakery
+              <span className="bg-[#FEF9E7] border border-[#FDE68A] px-3.5 py-1.5 rounded-full text-xs font-bold text-[#92400E] flex items-center gap-1.5 shadow-2xs">
+                <CroissantIcon className="w-3.5 h-3.5 text-[#92400E]" /> Fresh Bakery
               </span>
-              <span className="bg-white/80 border border-[#FFD4E5] px-3.5 py-1.5 rounded-full text-xs font-semibold text-[#421525] flex items-center gap-1.5 shadow-2xs">
-                <Cake className="w-3.5 h-3.5 text-[#EE4B82]" /> Artisan Cakes
+              <span className="bg-[#EDF5D3] border border-[#DCE8B2] px-3.5 py-1.5 rounded-full text-xs font-bold text-[#4A5E1A] flex items-center gap-1.5 shadow-2xs">
+                <Cake className="w-3.5 h-3.5 text-[#4A5E1A]" /> Artisan Cakes
               </span>
             </div>
           </div>
@@ -160,11 +162,14 @@ export default function MainContent({
         {/* Section Heading */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
           <div>
+            <span className="font-cursive text-2xl text-[#8C183C] block mb-0.5">
+              pick your favorite flavors
+            </span>
             <div className="flex items-baseline gap-2.5 mb-1">
               <h2 className="font-brand text-3xl sm:text-4xl font-black text-[#421525]">
                 Our Sweet
               </h2>
-              <span className="font-serif-italic text-3xl sm:text-4xl text-[#EE4B82]">
+              <span className="font-serif-italic text-3xl sm:text-4xl text-[#8C183C]">
                 Menu &amp; Bakes
               </span>
             </div>
@@ -180,20 +185,28 @@ export default function MainContent({
           {/* Category Tabs */}
           <div className="flex flex-wrap items-center gap-2.5">
             {categories.map((cat) => {
-              const count = categoryCounts[cat] ?? 0;
-              const isActive = currentCategory === cat;
+              const isActive = currentCategory === cat.id;
 
               return (
                 <button
-                  key={cat}
-                  onClick={() => onSelectCategory(cat)}
-                  className={`rounded-full px-5 py-2.5 text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                  key={cat.id}
+                  onClick={() => onSelectCategory(cat.id)}
+                  className={`rounded-full px-5 py-2.5 text-xs sm:text-sm font-bold transition-all cursor-pointer flex items-center gap-2 ${
                     isActive
-                      ? 'bg-gradient-to-r from-[#FF6B9E] to-[#EE4B82] text-white shadow-md shadow-pink-300/40 scale-102'
-                      : 'bg-white border border-[#FFD4E5] text-[#421525] hover:bg-[#FFEBF2] hover:border-[#FF6B9E] shadow-2xs'
+                      ? 'bg-[#8C183C] text-white shadow-md shadow-rose-950/20 scale-102'
+                      : 'bg-white border border-[#FFDFEC] text-[#421525] hover:bg-[#FFF5F8] hover:border-[#FBC5D8] shadow-2xs'
                   }`}
                 >
-                  {cat} ({count})
+                  <span>{cat.label}</span>
+                  <span
+                    className={`text-[11px] px-2 py-0.5 rounded-full font-bold ${
+                      isActive
+                        ? 'bg-white/20 text-white'
+                        : 'bg-[#FFF0F5] text-[#8C183C]'
+                    }`}
+                  >
+                    {cat.count}
+                  </span>
                 </button>
               );
             })}
@@ -307,49 +320,55 @@ export default function MainContent({
       </section>
 
       {/* ==================================================== */}
-      {/* 3. PROMO SECTION (Chill Special Treat & Vouchers)    */}
+      {/* 3. PROMO SECTION (Frosty Special Treats & Vouchers)  */}
       {/* ==================================================== */}
-      <section className="w-full bg-gradient-to-r from-[#FFEBF2] via-[#FFDCE8] to-[#FFEBF2] py-12 px-6 lg:px-14 border-t border-[#FFD4E5]">
+      <section className="w-full bg-gradient-to-r from-[#FFF6EA] via-[#FFEBF2] to-[#FFF0F5] py-14 px-6 lg:px-14 border-t border-[#FFDFEC]">
         <div className="max-w-[1400px] mx-auto flex flex-col lg:flex-row items-center justify-between gap-8">
           
           {/* Left: Text & Vouchers */}
           <div className="flex-1 max-w-xl text-center lg:text-left">
-            <div className="inline-flex items-center gap-1.5 bg-white px-3.5 py-1 rounded-full text-xs font-bold text-[#EE4B82] mb-3 shadow-2xs border border-[#FFD4E5]">
+            <div className="inline-flex items-center gap-1.5 bg-[#EDF5D3] px-3.5 py-1 rounded-full text-xs font-bold text-[#4A5E1A] mb-3 shadow-2xs border border-[#DCE8B2]">
               <Sparkles className="w-3.5 h-3.5" />
               <span>Promo Spesial Hari Ini</span>
             </div>
 
-            <h3 className="font-brand text-3xl sm:text-4xl font-black text-[#421525] mb-1 flex items-center justify-center lg:justify-start gap-2">
-              <span>Sweet Treats, Sweet Deals!</span>
-              <Sparkles className="w-6 h-6 text-[#EE4B82]" />
+            <span className="font-cursive text-2xl text-[#8C183C] block mb-0.5">
+              sweet treats, sweet deals
+            </span>
+
+            <h3 className="font-brand text-3xl sm:text-4xl font-black text-[#421525] mb-2 flex items-center justify-center lg:justify-start gap-2">
+              <span>Nikmati Diskon &amp; Voucher Spesial</span>
+              <Sparkles className="w-6 h-6 text-[#8C183C]" />
             </h3>
             
             <p className="text-xs sm:text-sm text-[#7D4759] mb-5">
-              Gunakan kode voucher favoritmu untuk menikmati diskon spesial saat checkout:
+              Gunakan kode voucher berikut saat checkout untuk menikmati potongan harga langsung:
             </p>
 
-            {/* Voucher Chips */}
+            {/* Voucher Chips matching UTS Syllabus */}
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5">
               {[
-                { code: 'UTS25', disc: 'Diskon 25%' },
-                { code: 'HEMAT10', disc: 'Diskon 10%' },
-                { code: 'MANIS15', disc: 'Diskon 15%' }
-              ].map(({ code, disc }) => (
+                { code: 'UTS25', disc: 'Diskon 25%', bg: 'border-[#FBC5D8] hover:bg-[#8C183C]' },
+                { code: 'HEMAT10', disc: 'Diskon 10%', bg: 'border-[#DCE8B2] hover:bg-[#5E7A26]' },
+                { code: 'KOPI15', disc: 'Diskon 15%', bg: 'border-[#FED7AA] hover:bg-[#8C4A20]' },
+                { code: 'MANIS15', disc: 'Diskon 15%', bg: 'border-[#FFD4E5] hover:bg-[#D93874]' }
+              ].map(({ code, disc, bg }) => (
                 <button
                   key={code}
                   onClick={() => onApplyPromoCode(code)}
-                  className="bg-white hover:bg-[#EE4B82] text-[#421525] hover:text-white border border-[#FFD4E5] hover:border-[#EE4B82] px-4 py-2 rounded-2xl shadow-xs transition-all cursor-pointer flex items-center gap-2 group"
+                  className={`bg-white hover:text-white border px-4 py-2.5 rounded-2xl shadow-xs transition-all cursor-pointer flex items-center gap-2 group ${bg}`}
+                  title={`Klik untuk menerapkan kode voucher ${code}`}
                 >
-                  <span className="font-brand font-black text-xs text-[#EE4B82] group-hover:text-white">{code}</span>
-                  <span className="text-[11px] font-medium text-[#7D4759] group-hover:text-white/90">({disc})</span>
+                  <span className="font-brand font-black text-xs text-[#8C183C] group-hover:text-white">{code}</span>
+                  <span className="text-[11px] font-semibold text-[#7D4759] group-hover:text-white/90">({disc})</span>
                 </button>
               ))}
             </div>
           </div>
 
-          {/* Right: Featured Item Photo */}
-          <div className="flex items-center gap-5 sm:gap-6 bg-white/90 backdrop-blur-sm p-4 rounded-3xl border border-[#FFD4E5] shadow-lg shadow-pink-200/50">
-            <div className="w-24 h-24 rounded-2xl overflow-hidden bg-[#FFE4EE] flex-shrink-0">
+          {/* Right: Featured Item Photo in Frosty Bento Card */}
+          <div className="flex items-center gap-5 sm:gap-6 bg-white/95 backdrop-blur-sm p-4 sm:p-5 rounded-[28px] border border-[#FFDFEC] shadow-xl shadow-rose-950/5">
+            <div className="w-24 h-24 rounded-2xl overflow-hidden bg-[#FFE4EE] flex-shrink-0 border border-[#FFDFEC]">
               <img
                 src="/images/heart-macaron.jpg"
                 alt="Featured Treat"
@@ -357,10 +376,12 @@ export default function MainContent({
               />
             </div>
             <div>
-              <span className="text-[10px] font-bold text-[#EE4B82] uppercase tracking-wider block">Featured Sweet</span>
+              <span className="text-[10px] font-bold text-[#4A5E1A] bg-[#EDF5D3] px-2.5 py-0.5 rounded-full uppercase tracking-wider inline-block mb-1 border border-[#DCE8B2]">
+                Paling Favorit
+              </span>
               <h4 className="font-brand font-bold text-base text-[#421525]">Sweet Heart Macarons</h4>
               <div className="flex items-baseline gap-2 mt-1">
-                <span className="font-brand font-black text-lg text-[#EE4B82]">Rp 22.000</span>
+                <span className="font-brand font-black text-lg text-[#8C183C]">Rp 22.000</span>
                 <span className="text-xs text-[#7D4759] line-through">Rp 28.000</span>
               </div>
             </div>

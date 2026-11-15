@@ -278,11 +278,21 @@ function AppContent() {
   const filteredAndSortedMenu = useMemo(() => {
     let result = [...menuList];
 
-    // Filter Kategori
+    // Filter Kategori: Mendukung Kopi, Non-Kopi, Makanan (Bakery), Snack (Cakes), dan Favorit
     if (currentCategory === 'Favorit') {
       result = result.filter((item) => favorites.includes(item.id));
+    } else if (currentCategory === 'Makanan' || currentCategory === 'Bakery' || currentCategory === 'Makanan (Bakery)') {
+      result = result.filter(
+        (item) => item.category === 'Makanan' || item.subcategory === 'Bakery' || item.category === 'Bakery'
+      );
+    } else if (currentCategory === 'Snack' || currentCategory === 'Cakes' || currentCategory === 'Snack (Cakes)') {
+      result = result.filter(
+        (item) => item.category === 'Snack' || item.subcategory === 'Cakes' || item.category === 'Cakes'
+      );
     } else if (currentCategory !== 'Semua') {
-      result = result.filter((item) => item.category === currentCategory);
+      result = result.filter(
+        (item) => item.category === currentCategory || item.subcategory === currentCategory
+      );
     }
 
     // Filter Pencarian: HANYA mencocokkan Nama Menu agar akurat & sesuai ekspektasi pengguna!

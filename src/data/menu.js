@@ -88,11 +88,12 @@ export const initialMenuData = [
     rating: 4.9
   },
 
-  // 3. Kategori: Bakery (3)
+  // 3. Kategori: Makanan / Bakery (3)
   {
     id: 9,
     name: "Croissant with Berries",
-    category: "Bakery",
+    category: "Makanan",
+    subcategory: "Bakery",
     price: 25000,
     stock: 8,
     image: "/images/croissant.jpg",
@@ -102,7 +103,8 @@ export const initialMenuData = [
   {
     id: 10,
     name: "Shio Pan (Japanese Salt Bread)",
-    category: "Bakery",
+    category: "Makanan",
+    subcategory: "Bakery",
     price: 18000,
     stock: 14,
     image: "/images/shio-pan.jpg",
@@ -112,7 +114,8 @@ export const initialMenuData = [
   {
     id: 11,
     name: "Chocolate Soft Cookie",
-    category: "Bakery",
+    category: "Makanan",
+    subcategory: "Bakery",
     price: 16000,
     stock: 18,
     image: "/images/soft-cookie.jpg",
@@ -120,11 +123,12 @@ export const initialMenuData = [
     rating: 4.9
   },
 
-  // 4. Kategori: Cakes (4)
+  // 4. Kategori: Snack / Cakes (4)
   {
     id: 12,
     name: "Red Velvet Strawberry Cake",
-    category: "Cakes",
+    category: "Snack",
+    subcategory: "Cakes",
     price: 32000,
     stock: 10,
     image: "/images/red-velvet-cake.jpg",
@@ -134,7 +138,8 @@ export const initialMenuData = [
   {
     id: 13,
     name: "Matcha Basque Cheesecake",
-    category: "Cakes",
+    category: "Snack",
+    subcategory: "Cakes",
     price: 34000,
     stock: 9,
     image: "/images/matcha-cake.jpg",
@@ -144,7 +149,8 @@ export const initialMenuData = [
   {
     id: 14,
     name: "Sweet Heart Macarons",
-    category: "Cakes",
+    category: "Snack",
+    subcategory: "Cakes",
     price: 22000,
     stock: 16,
     image: "/images/heart-macaron.jpg",
@@ -154,7 +160,8 @@ export const initialMenuData = [
   {
     id: 15,
     name: "Oreo Cookies & Cream Frappe",
-    category: "Cakes",
+    category: "Snack",
+    subcategory: "Cakes",
     price: 30000,
     stock: 10,
     image: "/images/oreo-frappe.jpg",
