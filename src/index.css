@@ -22,23 +22,29 @@
   font-style: italic;
 }
 
-/* Custom cute pastel pink scrollbar */
+/* Custom cute pastel pink scrollbar - Sleek & integrated inside containers */
 ::-webkit-scrollbar {
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #FFF2F6;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #FFB8D2;
+  background: #FFC0D7;
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #FF6B9E;
+  background: #EE4B82;
+}
+
+/* Firefox scrollbar support */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #FFC0D7 transparent;
 }
 
 @keyframes fadeIn {

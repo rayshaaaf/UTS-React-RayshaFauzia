@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bell, Heart, ShoppingCart, MessageCircle, Check, RotateCcw, Receipt } from 'lucide-react';
+import { Bell, Heart, ShoppingCart, MessageCircle, Check, CheckCheck, RotateCcw, Receipt } from 'lucide-react';
 import Modal from './Modal';
 import { useNotification } from '../context/NotificationContext';
 
@@ -28,13 +28,20 @@ export default function NotificationsModal({ isOpen, onClose }) {
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      title={unreadCount > 0 ? `Notifikasi (${unreadCount}) 💌` : 'Notifikasi 💌'}
+      title={
+        <div className="flex items-center gap-2.5">
+          <div className="w-8 h-8 rounded-xl bg-[#FFEBF2] text-[#EE4B82] flex items-center justify-center border border-[#FFD4E5]">
+            <Bell className="w-4 h-4" />
+          </div>
+          <span>{unreadCount > 0 ? `Notifikasi (${unreadCount})` : 'Notifikasi'}</span>
+        </div>
+      }
       maxWidth="max-w-lg"
     >
       <div className="space-y-4">
         
         {/* List of notifications or Empty State */}
-        <div className="space-y-2.5 max-h-[380px] overflow-y-auto pr-1">
+        <div className="space-y-2.5 max-h-[380px] overflow-y-auto pr-2">
           {notifications.length === 0 ? (
             /* Empty State */
             <div className="bg-[#FFF8FA] rounded-3xl p-10 text-center flex flex-col items-center justify-center border border-[#FFEDF4]">
@@ -85,9 +92,10 @@ export default function NotificationsModal({ isOpen, onClose }) {
           <button
             onClick={markAllAsRead}
             disabled={unreadCount === 0}
-            className="w-full py-3 rounded-2xl bg-gradient-to-r from-[#FF6B9E] to-[#EE4B82] hover:opacity-95 text-white font-bold text-xs sm:text-sm shadow-md shadow-pink-200 transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+            className="w-full py-3 rounded-2xl bg-gradient-to-r from-[#FF6B9E] to-[#EE4B82] hover:opacity-95 text-white font-bold text-xs sm:text-sm shadow-md shadow-pink-200 transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
           >
-            Tandai Semua Dibaca ✨
+            <CheckCheck className="w-4 h-4" />
+            <span>Tandai Semua Dibaca</span>
           </button>
         </div>
 

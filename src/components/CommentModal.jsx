@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MessageCircle, Check } from 'lucide-react';
+import { MessageCircle, Check, Send, Star } from 'lucide-react';
 import Modal from './Modal';
 import StarRating from './StarRating';
 import { formatRupiah } from '../utils/pricing';
@@ -129,9 +129,10 @@ export default function CommentModal({
 
           <button
             type="submit"
-            className="w-full py-3 rounded-full bg-gradient-to-r from-[#FF6B9E] to-[#EE4B82] hover:opacity-95 text-white font-bold text-sm shadow-md shadow-pink-200 transition-all cursor-pointer"
+            className="w-full py-3 rounded-full bg-gradient-to-r from-[#FF6B9E] to-[#EE4B82] hover:opacity-95 text-white font-bold text-sm shadow-md shadow-pink-200 transition-all cursor-pointer flex items-center justify-center gap-2"
           >
-            Kirim Ulasan 💌
+            <Send className="w-4 h-4" />
+            <span>Kirim Ulasan</span>
           </button>
         </form>
 
@@ -161,7 +162,7 @@ export default function CommentModal({
               </div>
             </div>
           ) : (
-            <div className="space-y-3 max-h-52 overflow-y-auto pr-1">
+            <div className="space-y-3 max-h-56 overflow-y-auto pr-2">
               {comments.map((rev, idx) => (
                 <div key={idx} className="bg-[#FFF8FA] p-3 rounded-2xl border border-[#FFEDF4] flex items-start gap-3">
                   <img
@@ -175,9 +176,14 @@ export default function CommentModal({
                   <div>
                     <div className="flex items-center gap-2 text-xs">
                       <span className="font-bold text-[#421525]">{rev.author}</span>
-                      <span className="text-[#A06375] text-[11px]">
-                        {'★'.repeat(rev.rating)} · {rev.date || rev.time || 'Baru saja'}
-                      </span>
+                      <div className="flex items-center gap-1 text-[#A06375] text-[11px]">
+                        <div className="flex items-center">
+                          {Array.from({ length: rev.rating || 5 }).map((_, sIdx) => (
+                            <Star key={sIdx} className="w-3 h-3 fill-[#FF6B9E] text-[#FF6B9E]" />
+                          ))}
+                        </div>
+                        <span>· {rev.date || rev.time || 'Baru saja'}</span>
+                      </div>
                     </div>
                     <p className="text-xs text-[#7D4759] mt-1 leading-snug">
                       {rev.text}

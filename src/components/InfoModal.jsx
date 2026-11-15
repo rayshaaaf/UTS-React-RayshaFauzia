@@ -1,5 +1,5 @@
 import React from 'react';
-import { Star } from 'lucide-react';
+import { Star, Sparkles } from 'lucide-react';
 import Modal from './Modal';
 import { formatRupiah } from '../utils/pricing';
 
@@ -52,11 +52,12 @@ export default function InfoModal({ isOpen, onClose, item, comments = [] }) {
 
         {/* Divider & Reviews */}
         <div className="border-t border-[#FFEDF4] pt-4">
-          <h4 className="font-brand font-bold text-base text-[#421525] mb-3">
-            Ulasan Pecinta Manis 🍓
+          <h4 className="font-brand font-bold text-base text-[#421525] mb-3 flex items-center gap-1.5">
+            <span>Ulasan Pecinta Manis</span>
+            <Sparkles className="w-4 h-4 text-[#EE4B82]" />
           </h4>
 
-          <div className="space-y-3.5 max-h-56 overflow-y-auto pr-1">
+          <div className="space-y-3.5 max-h-56 overflow-y-auto pr-2">
             {comments.length === 0 ? (
               <p className="text-xs text-[#7D4759] italic py-2">
                 Belum ada ulasan untuk menu ini. Jadilah yang pertama bercerita!
@@ -75,9 +76,13 @@ export default function InfoModal({ isOpen, onClose, item, comments = [] }) {
                   <div>
                     <div className="flex items-center gap-2 text-xs">
                       <span className="font-bold text-[#421525]">{rev.author}</span>
-                      <span className="text-[#A06375] text-[11px]">
-                        ⭐ {rev.rating}.0 · {rev.date || rev.time || 'Baru saja'}
-                      </span>
+                      <div className="flex items-center gap-1 text-[#A06375] text-[11px]">
+                        <div className="flex items-center gap-0.5">
+                          <Star className="w-3 h-3 fill-[#FF6B9E] text-[#FF6B9E]" />
+                          <span className="font-bold text-[#EE4B82]">{rev.rating}.0</span>
+                        </div>
+                        <span>· {rev.date || rev.time || 'Baru saja'}</span>
+                      </div>
                     </div>
                     <p className="text-xs text-[#7D4759] mt-1 leading-snug">
                       {rev.text}

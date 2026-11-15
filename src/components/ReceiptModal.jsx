@@ -1,5 +1,5 @@
 import React from 'react';
-import { Receipt } from 'lucide-react';
+import { Receipt, Check } from 'lucide-react';
 import Modal from './Modal';
 import { formatRupiah } from '../utils/pricing';
 
@@ -22,7 +22,7 @@ export default function ReceiptModal({ isOpen, onClose, receiptData }) {
             STRUK PEMBAYARAN RESMI
           </div>
           <p className="text-[11px] text-[#7D4759] mt-1">
-            Pembayaran berhasil. Terima kasih sudah mampir! ✨
+            Pembayaran berhasil. Terima kasih sudah mampir!
           </p>
         </div>
 
@@ -86,9 +86,10 @@ export default function ReceiptModal({ isOpen, onClose, receiptData }) {
         {/* Tutup Button */}
         <button
           onClick={onClose}
-          className="w-full py-3.5 mt-3 rounded-2xl bg-gradient-to-r from-[#FF6B9E] to-[#EE4B82] hover:opacity-95 text-white font-bold text-sm shadow-md shadow-pink-200 transition-all cursor-pointer"
+          className="w-full py-3.5 mt-3 rounded-2xl bg-gradient-to-r from-[#FF6B9E] to-[#EE4B82] hover:opacity-95 text-white font-bold text-sm shadow-md shadow-pink-200 transition-all cursor-pointer flex items-center justify-center gap-2"
         >
-          Simpan &amp; Tutup Struk 🎀
+          <Check className="w-4 h-4" />
+          <span>Simpan &amp; Tutup Struk</span>
         </button>
 
       </div>

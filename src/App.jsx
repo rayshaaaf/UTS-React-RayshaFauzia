@@ -146,7 +146,7 @@ function AppContent() {
     }
 
     addItem(product);
-    showToast('cart', 'Rosé Café', `${product.name} masuk ke keranjang belanja 🛍️`);
+    showToast('cart', 'Rosé Café', `${product.name} masuk ke keranjang belanja.`);
     addNotification('cart', 'Keranjang Belanja', `${product.name} ditambahkan ke keranjang.`);
   };
 
@@ -170,7 +170,7 @@ function AppContent() {
         ...prev,
         [productId]: Date.now()
       }));
-      showToast('favorite', 'Rosé Café', `${product.name} disimpan ke favorit! 💖`);
+      showToast('favorite', 'Rosé Café', `${product.name} disimpan ke favorit!`);
       addNotification('favorite', 'Menu Favorit', `${product.name} ditambahkan ke daftar favorit.`);
     }
   };
@@ -196,7 +196,7 @@ function AppContent() {
     });
 
     const product = menuList.find((p) => p.id === menuId);
-    showToast('comment', 'Rosé Café', 'Ulasanmu berhasil dikirim! 💌');
+    showToast('comment', 'Rosé Café', 'Ulasanmu berhasil dikirim!');
     addNotification('comment', 'Ulasan Baru', `Kamu memberi rating bintang ${newComment.rating} untuk ${product?.name || 'menu'}.`);
   };
 
@@ -250,7 +250,7 @@ function AppContent() {
     clearCart();
 
     // 6. Feedback Toast & Notifikasi
-    showToast('order', 'Pesanan Berhasil!', 'Pembayaran telah diterima. Terima kasih! 🍰');
+    showToast('order', 'Pesanan Berhasil!', 'Pembayaran telah diterima. Terima kasih!');
     addNotification('order', 'Pesanan Lunas', `Transaksi ${orderNo} berhasil dibayar.`);
   };
 
@@ -269,7 +269,7 @@ function AppContent() {
   const handleApplyPromoCodeFromBanner = (code) => {
     applyPromo(code);
     setIsCartOpen(true);
-    showToast('promo', 'Rosé Café', `Voucher ${code} berhasil diaktifkan! ✨`);
+    showToast('promo', 'Rosé Café', `Voucher ${code} berhasil diaktifkan!`);
   };
 
   // --------------------------------------------------------------------------

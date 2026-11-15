@@ -319,8 +319,9 @@ export default function MainContent({
               <span>Promo Spesial Hari Ini</span>
             </div>
 
-            <h3 className="font-brand text-3xl sm:text-4xl font-black text-[#421525] mb-1">
-              Sweet Treats, Sweet Deals! 🎀
+            <h3 className="font-brand text-3xl sm:text-4xl font-black text-[#421525] mb-1 flex items-center justify-center lg:justify-start gap-2">
+              <span>Sweet Treats, Sweet Deals!</span>
+              <Sparkles className="w-6 h-6 text-[#EE4B82]" />
             </h3>
             
             <p className="text-xs sm:text-sm text-[#7D4759] mb-5">

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { RotateCcw, Receipt } from 'lucide-react';
+import { RotateCcw, Receipt, Check } from 'lucide-react';
 import Modal from './Modal';
 import { formatRupiah } from '../utils/pricing';
 
@@ -21,11 +21,23 @@ export default function HistoryModal({
 
   return (
     <>
-      <Modal isOpen={isOpen} onClose={onClose} title="Riwayat Pesanan Kamu 🎀" maxWidth="max-w-xl">
+      <Modal
+        isOpen={isOpen}
+        onClose={onClose}
+        title={
+          <div className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-xl bg-[#FFEBF2] text-[#EE4B82] flex items-center justify-center border border-[#FFD4E5]">
+              <Receipt className="w-4 h-4" />
+            </div>
+            <span>Riwayat Pesanan Kamu</span>
+          </div>
+        }
+        maxWidth="max-w-xl"
+      >
         <div className="space-y-4">
           
           {/* Orders List or Empty State */}
-          <div className="space-y-3 max-h-[380px] overflow-y-auto pr-1">
+          <div className="space-y-3 max-h-[380px] overflow-y-auto pr-2">
             {historyOrders.length === 0 ? (
               /* Empty State */
               <div className="bg-[#FFF8FA] rounded-3xl p-10 text-center flex flex-col items-center justify-center border border-[#FFEDF4]">
@@ -52,8 +64,9 @@ export default function HistoryModal({
                         {order.orderNo}
                       </span>
                     </div>
-                    <span className="text-[10px] font-bold bg-[#FFEBF2] text-[#EE4B82] px-2.5 py-0.5 rounded-full border border-[#FFD4E5]">
-                      Lunas ✨
+                    <span className="text-[10px] font-bold bg-[#FFEBF2] text-[#EE4B82] px-2.5 py-0.5 rounded-full border border-[#FFD4E5] flex items-center gap-1">
+                      <Check className="w-3 h-3 text-[#EE4B82]" />
+                      <span>Lunas</span>
                     </span>
                   </div>
 

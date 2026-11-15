@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Trash2, Plus, Minus, ShoppingCart, Info, Sparkles } from 'lucide-react';
+import { X, Trash2, Plus, Minus, ShoppingCart, Info, Sparkles, CreditCard } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useToast } from '../context/ToastContext';
 import { formatRupiah, PROMO_CODES } from '../utils/pricing';
@@ -20,7 +20,7 @@ export default function CartDrawer({ isOpen, onClose, onCheckoutSuccess }) {
     if (PROMO_CODES[code]) {
       applyPromo(code);
       setPromoError('');
-      showToast('promo', 'Rosé Café', `Voucher ${code} berhasil diterapkan! ✨`);
+      showToast('promo', 'Rosé Café', `Voucher ${code} berhasil diterapkan!`);
     } else {
       setPromoError('Kode promo tidak valid! Coba UTS25, HEMAT10, atau MANIS15.');
       showToast('warning', 'Batas stok', 'Kode promo tidak terdaftar.');
@@ -250,9 +250,10 @@ export default function CartDrawer({ isOpen, onClose, onCheckoutSuccess }) {
           <button
             onClick={onCheckoutSuccess}
             disabled={items.length === 0}
-            className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-[#FF6B9E] to-[#EE4B82] hover:opacity-95 text-white font-bold text-sm shadow-md shadow-pink-200 transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+            className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-[#FF6B9E] to-[#EE4B82] hover:opacity-95 text-white font-bold text-sm shadow-md shadow-pink-200 transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
           >
-            Bayar Pesanan 🧁
+            <CreditCard className="w-4 h-4" />
+            <span>Bayar Pesanan</span>
           </button>
 
         </div>
