@@ -1,16 +1,37 @@
-# React + Vite
+#  UTS React - Pemrograman Web / ReactJS
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+<p align="center">
+  <b>Repository untuk Ujian Tengah Semester (UTS) mata kuliah berbasis React.js</b>
+</p>
 
-Currently, two official plugins are available:
+<p align="center">
+  <img src="https://img.shields.io/badge/React-18.x-blue?style=for-the-badge&logo=react" alt="React" />
+  <img src="https://img.shields.io/badge/JavaScript-ES6+-yellow?style=for-the-badge&logo=javascript" alt="JavaScript" />
+  <img src="https://img.shields.io/badge/Status-Completed-success?style=for-the-badge" alt="Status" />
+</p>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+##  Tentang Project
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Project ini dibangun menggunakan **React.js** sebagai bagian dari Ujian Tengah Semester (UTS). Aplikasi ini dirancang untuk memenuhi kriteria penilaian yang mencakup implementasi komponen, pengelolaan state, routing, serta antarmuka yang responsif dan ramah pengguna.
 
-## Expanding the Oxlint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+##  Fitur Utama
+
+- **Komponen Modular:** Dibangun dengan struktur komponen React yang terorganisir dengan baik untuk memudahkan pemeliharaan kode.
+- **Manajemen State:** Menggunakan React Hooks (`useState`, `useEffect`, dll.) untuk pengelolaan data secara dinamis.
+- **Navigasi Halaman:** Penerapan sistem navigasi/routing yang mulus *(jika menggunakan React Router)*.
+- **Desain Responsif:** Antarmuka yang disesuaikan agar nyaman diakses melalui berbagai ukuran layar (desktop maupun mobile).
+
+---
+
+##  Teknologi yang Digunakan
+
+- **Frontend Library:** [React.js](https://react.dev/)
+- **Styling:** CSS / Tailwind CSS / Bootstrap *(sesuaikan dengan yang kamu pakai)*
+- **Build Tool:** Vite / Create React App *(sesuaikan dengan setup-mu)*
+- **Package Manager:** npm / yarn
+
+---
