@@ -1,5 +1,5 @@
 import React from 'react';
-import { Search, ShoppingCart, Bell, History, X } from 'lucide-react';
+import { Search, ShoppingCart, Bell, History, X, Sparkles } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useNotification } from '../context/NotificationContext';
 
@@ -14,36 +14,49 @@ export default function Header({
   const { unreadCount } = useNotification();
 
   return (
-    <header className="sticky top-0 z-40 bg-[#FFF3F1] border-b border-[#E8DCCB]/60 px-8 lg:px-16 py-4 transition-all">
-      <div className="max-w-[1440px] mx-auto flex items-center justify-between gap-6">
+    <header className="sticky top-0 z-40 bg-[#FFF2F6]/90 backdrop-blur-md border-b border-[#FFD4E5] px-6 lg:px-14 py-3.5 transition-all">
+      <div className="max-w-[1400px] mx-auto flex items-center justify-between gap-4 sm:gap-6">
         
-        {/* Left: Brand Logo KopiKu */}
+        {/* Left: Brand Logo Rosé Café & Bakery */}
         <div 
           onClick={() => {
             onSearchChange('');
             window.scrollTo({ top: 0, behavior: 'smooth' });
           }}
-          className="cursor-pointer select-none"
+          className="cursor-pointer select-none flex items-center gap-2.5 group"
         >
-          <span className="font-heading text-3xl font-black tracking-tight text-[#5A2E1B]">
-            KopiKu
-          </span>
+          <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-[#FF6B9E] to-[#EE4B82] flex items-center justify-center text-white shadow-md shadow-pink-200 group-hover:scale-105 transition-transform">
+            <Sparkles className="w-5 h-5" />
+          </div>
+          <div>
+            <div className="flex items-center gap-1.5">
+              <span className="font-brand text-2xl font-black tracking-tight text-[#421525]">
+                Rosé
+              </span>
+              <span className="font-serif-italic text-lg font-bold text-[#EE4B82]">
+                Café &amp; Bakery
+              </span>
+            </div>
+            <span className="text-[10px] text-[#8C4A60] font-medium tracking-wide block -mt-1">
+              sweet sips &amp; freshly baked treats
+            </span>
+          </div>
         </div>
 
-        {/* Center: Search input "Cari menu..." */}
-        <div className="flex-1 max-w-xl relative">
+        {/* Center: Search input */}
+        <div className="flex-1 max-w-lg relative">
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
-            placeholder="Cari menu..."
-            className="w-full bg-white border border-gray-100 rounded-full py-2.5 pl-11 pr-10 text-sm text-[#5A2E1B] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#B8805F]/30 shadow-xs transition-all"
+            placeholder="Cari kopi, pastry, atau cake manis..."
+            className="w-full bg-white border border-[#FFD4E5] rounded-full py-2.5 pl-11 pr-10 text-xs sm:text-sm text-[#421525] placeholder:text-[#A06375] focus:outline-none focus:border-[#FF6B9E] focus:ring-4 focus:ring-[#FFD4E5]/50 shadow-xs transition-all"
           />
-          <Search className="absolute left-4 top-3 w-4 h-4 text-gray-500" strokeWidth={2} />
+          <Search className="absolute left-4 top-3 w-4 h-4 text-[#EE4B82]" strokeWidth={2} />
           {searchQuery && (
             <button
               onClick={() => onSearchChange('')}
-              className="absolute right-3.5 top-2.5 text-gray-400 hover:text-[#5A2E1B] transition-colors"
+              className="absolute right-3.5 top-2.5 text-[#A06375] hover:text-[#EE4B82] transition-colors"
               title="Hapus pencarian"
             >
               <X className="w-4 h-4" />
@@ -52,40 +65,40 @@ export default function Header({
         </div>
 
         {/* Right: Actions Group (Bell, History, Cart) */}
-        <div className="flex items-center gap-5 sm:gap-6">
+        <div className="flex items-center gap-3 sm:gap-4">
           
-          {/* Bell Icon with rose red badge */}
+          {/* Bell Icon */}
           <button
             onClick={onOpenNotifications}
             title="Buka Notifikasi"
-            className="relative p-1 text-[#5A2E1B] hover:text-[#B8805F] transition-colors cursor-pointer group"
+            className="relative w-10 h-10 rounded-full bg-white border border-[#FFD4E5] hover:bg-[#FFE4EE] hover:border-[#FF6B9E] text-[#421525] hover:text-[#EE4B82] flex items-center justify-center transition-all shadow-xs cursor-pointer group"
           >
-            <Bell className="w-6 h-6 transition-transform group-hover:scale-110" strokeWidth={2} />
+            <Bell className="w-5 h-5 transition-transform group-hover:scale-110" strokeWidth={2} />
             {unreadCount > 0 && (
-              <span className="absolute -top-1 -right-1.5 bg-[#D96A7B] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+              <span className="absolute -top-1 -right-1 bg-[#EE4B82] text-white text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center border-2 border-white shadow-sm">
                 {unreadCount}
               </span>
             )}
           </button>
 
-          {/* History Icon (Transaction History) */}
+          {/* History Icon */}
           <button
             onClick={onOpenHistory}
             title="Riwayat Transaksi"
-            className="relative p-1 text-[#5A2E1B] hover:text-[#B8805F] transition-colors cursor-pointer group"
+            className="relative w-10 h-10 rounded-full bg-white border border-[#FFD4E5] hover:bg-[#FFE4EE] hover:border-[#FF6B9E] text-[#421525] hover:text-[#EE4B82] flex items-center justify-center transition-all shadow-xs cursor-pointer group"
           >
-            <History className="w-6 h-6 transition-transform group-hover:scale-110" strokeWidth={2} />
+            <History className="w-5 h-5 transition-transform group-hover:scale-110" strokeWidth={2} />
           </button>
 
-          {/* ShoppingCart Button with badge */}
+          {/* Cart Icon */}
           <button
             onClick={onOpenCart}
             title="Buka Keranjang Belanja"
-            className="relative p-1 text-[#5A2E1B] hover:text-[#B8805F] transition-colors cursor-pointer group"
+            className="relative w-10 h-10 rounded-full bg-gradient-to-r from-[#FF6B9E] to-[#EE4B82] text-white flex items-center justify-center shadow-md shadow-pink-300/40 hover:scale-105 active:scale-95 transition-all cursor-pointer group"
           >
-            <ShoppingCart className="w-6 h-6 transition-transform group-hover:scale-110" strokeWidth={2} />
+            <ShoppingCart className="w-5 h-5 transition-transform group-hover:scale-110" strokeWidth={2} />
             {totalItemCount > 0 && (
-              <span className="absolute -top-1 -right-1.5 bg-[#D96A7B] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+              <span className="absolute -top-1.5 -right-1.5 bg-[#421525] text-white text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center border-2 border-white shadow-sm">
                 {totalItemCount}
               </span>
             )}

@@ -16,59 +16,71 @@ import { initialMenuData } from './data/menu';
 import { useLocalStorage } from './hooks/useLocalStorage';
 
 function AppContent() {
-  // 1. Data menu utama (15 menu, 8 properti) disimpan di state + localStorage
-  const [menuList, setMenuList] = useLocalStorage('kopiku_menu_stock', initialMenuData);
+  // 1. Data menu utama (15 menu, 8 properti)
+  const [menuList, setMenuList] = useLocalStorage('rose_cafe_menu_stock', initialMenuData);
 
-  // 2. State Favorit & Timestamp (Page 1: Favorit (0) default)
-  const [favorites, setFavorites] = useLocalStorage('kopiku_favorites', []);
-  const [favoriteTimestamps, setFavoriteTimestamps] = useLocalStorage('kopiku_fav_timestamps', {});
+  // 2. State Favorit & Timestamp
+  const [favorites, setFavorites] = useLocalStorage('rose_cafe_favorites', [14, 2]); // default: Macarons & Iced Cocoa
+  const [favoriteTimestamps, setFavoriteTimestamps] = useLocalStorage('rose_cafe_fav_timestamps', {
+    14: 1731666400000,
+    2: 1731667400000
+  });
 
-  // 3. State Komentar & Ulasan Pelanggan (Nadia & Arif for Cafe Latte)
-  const [commentsData, setCommentsData] = useLocalStorage('kopiku_comments', {
-    3: [
+  // 3. State Komentar & Ulasan Pelanggan
+  const [commentsData, setCommentsData] = useLocalStorage('rose_cafe_comments', {
+    14: [
       {
         author: 'Nadia',
         avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80',
         rating: 5,
-        text: 'Kopinya pas, creamy tapi tetap terasa espresso-nya.',
+        text: 'Bentuk hatinya gemes banget! Krim pistachio-nya gurih lembut, manisnya pas ga bikin eneg.',
         date: '15 Nov, 09.20'
       },
       {
         author: 'Arif',
         avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80',
         rating: 5,
-        text: 'Favorit untuk teman kerja. Selalu enak!',
+        text: 'Cocok banget buat temen ngopi sore santai. Bikin mood langsung ceria!',
         date: '14 Nov, 16.45'
+      }
+    ],
+    2: [
+      {
+        author: 'Siti Nurhaliza',
+        avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80',
+        rating: 5,
+        text: 'Cokelatnya pekat dan berkarakter, pas dipadukan sama susu segar.',
+        date: 'Kemarin'
       }
     ]
   });
 
-  // 4. State Riwayat Transaksi (Page 12: Total Belanja Rp 106.700)
-  const [historyOrders, setHistoryOrders] = useLocalStorage('kopiku_order_history', [
+  // 4. State Riwayat Transaksi
+  const [historyOrders, setHistoryOrders] = useLocalStorage('rose_cafe_order_history', [
     {
-      orderNo: 'KKU-20261115-001',
+      orderNo: 'ROSE-20261115-001',
       date: '15 Nov 2026 · 10.32',
       items: [
-        { name: 'Cafe Latte', qty: 2, price: 25000 },
-        { name: 'Croissant', qty: 1, price: 22000 }
+        { name: 'Sweet Heart Macarons', qty: 2, price: 22000 },
+        { name: 'Signature Iced Cocoa', qty: 1, price: 26000 }
       ],
-      subtotal: 72000,
-      discount: 18000,
-      tax: 5400,
-      total: 59400,
+      subtotal: 70000,
+      discount: 17500,
+      tax: 5250,
+      total: 57750,
       promoCode: 'UTS25'
     },
     {
-      orderNo: 'KKU-20261114-003',
+      orderNo: 'ROSE-20261114-002',
       date: '14 Nov 2026 · 16.45',
       items: [
-        { name: 'Matcha Latte', qty: 1, price: 28000 },
-        { name: 'Cookies', qty: 1, price: 15000 }
+        { name: 'Matcha Basque Cheesecake', qty: 1, price: 34000 },
+        { name: 'Shio Pan (Japanese Salt Bread)', qty: 1, price: 18000 }
       ],
-      subtotal: 43000,
+      subtotal: 52000,
       discount: 0,
-      tax: 4300,
-      total: 47300,
+      tax: 5200,
+      total: 57200,
       promoCode: ''
     }
   ]);
@@ -106,12 +118,12 @@ function AppContent() {
     const currentQty = existingInCart ? existingInCart.quantity : 0;
 
     if (currentQty >= product.stock) {
-      showToast('warning', 'Batas stok', 'Stok habis / batas stok tercapai.');
+      showToast('warning', 'Batas Stok', `Stok ${product.name} hanya tersisa ${product.stock} porsi.`);
       return;
     }
 
     addItem(product);
-    showToast('cart', 'KopiKu', `${product.name} masuk ke keranjang.`);
+    showToast('cart', 'Rosé Café', `${product.name} masuk ke keranjang belanja 🛍️`);
     addNotification('cart', 'Keranjang Belanja', `${product.name} ditambahkan ke keranjang.`);
   };
 
@@ -127,16 +139,16 @@ function AppContent() {
         delete copy[productId];
         return copy;
       });
-      showToast('favorite', 'KopiKu', `${product.name} dihapus dari favorit.`);
-      addNotification('favorite', 'Favorit', `${product.name} dihapus dari favorit.`);
+      showToast('favorite', 'Rosé Café', `${product.name} dihapus dari favorit.`);
+      addNotification('favorite', 'Favorit Dihapus', `${product.name} dihapus dari daftar favorit.`);
     } else {
       setFavorites((prev) => [...prev, productId]);
       setFavoriteTimestamps((prev) => ({
         ...prev,
         [productId]: Date.now()
       }));
-      showToast('favorite', 'KopiKu', `${product.name} ditambahkan ke favorit.`);
-      addNotification('favorite', 'Favorit', `${product.name} ditambahkan ke daftar favorit.`);
+      showToast('favorite', 'Rosé Café', `${product.name} disimpan ke favorit! 💖`);
+      addNotification('favorite', 'Menu Favorit', `${product.name} ditambahkan ke daftar favorit.`);
     }
   };
 
@@ -161,8 +173,8 @@ function AppContent() {
     });
 
     const product = menuList.find((p) => p.id === menuId);
-    showToast('comment', 'KopiKu', 'Komentar berhasil dikirim.');
-    addNotification('comment', 'Komentar Baru', `Komentar ${product?.name || 'menu'} berhasil dikirim.`);
+    showToast('comment', 'Rosé Café', 'Ulasanmu berhasil dikirim! 💌');
+    addNotification('comment', 'Ulasan Baru', `Kamu memberi rating bintang ${newComment.rating} untuk ${product?.name || 'menu'}.`);
   };
 
   // Action: Bayar Pesanan (Struk Pembayaran, Pengurangan Stok, Catat Riwayat)
@@ -183,7 +195,7 @@ function AppContent() {
 
     // 2. Buat data struk
     const now = new Date();
-    const orderNo = `KKU-${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}-${String(historyOrders.length + 1).padStart(3, '0')}`;
+    const orderNo = `ROSE-${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}-${String(historyOrders.length + 1).padStart(3, '0')}`;
     const dateFormatted = `${now.getDate()} Nov ${now.getFullYear()} · ${String(now.getHours()).padStart(2, '0')}.${String(now.getMinutes()).padStart(2, '0')}`;
 
     const orderItemsSummary = cartItems.map((it) => ({
@@ -215,26 +227,26 @@ function AppContent() {
     clearCart();
 
     // 6. Feedback Toast & Notifikasi
-    showToast('order', 'Pesanan dibayar', 'Pembayaran berhasil. Terima kasih!');
-    addNotification('order', 'Pesanan Dibayar', `Pesanan ${orderNo} berhasil dibayar.`);
+    showToast('order', 'Pesanan Berhasil!', 'Pembayaran telah diterima. Terima kasih! 🍰');
+    addNotification('order', 'Pesanan Lunas', `Transaksi ${orderNo} berhasil dibayar.`);
   };
 
-  // Action: Reset Stok + Riwayat (E2 Confirmation)
+  // Action: Reset Stok + Riwayat
   const handleResetAll = () => {
     setMenuList(initialMenuData);
     setHistoryOrders([]);
     clearCart();
     setFavorites([]);
 
-    showToast('reset', 'KopiKu', 'Stok dan riwayat berhasil direset.');
-    addNotification('reset', 'Reset Sistem', 'Stok dan riwayat berhasil direset.');
+    showToast('reset', 'Rosé Café', 'Stok seluruh menu dan riwayat belanja telah direset.');
+    addNotification('reset', 'Reset Sistem', 'Seluruh data stok dan transaksi telah dikembalikan ke awal.');
   };
 
-  // Action: Terapkan voucher dari section promo
+  // Action: Terapkan voucher dari promo banner
   const handleApplyPromoCodeFromBanner = (code) => {
     applyPromo(code);
     setIsCartOpen(true);
-    showToast('promo', 'KopiKu', `Promo ${code} berhasil diterapkan.`);
+    showToast('promo', 'Rosé Café', `Voucher ${code} berhasil diaktifkan! ✨`);
   };
 
   // --------------------------------------------------------------------------
@@ -275,7 +287,7 @@ function AppContent() {
   }, [menuList, currentCategory, favorites, searchQuery, sortOption, favoriteTimestamps]);
 
   return (
-    <div className="min-h-screen bg-[#FFF3F1] text-[#5A2E1B] flex flex-col justify-between selection:bg-[#B8805F] selection:text-white">
+    <div className="min-h-screen bg-[#FFF2F6] text-[#421525] flex flex-col justify-between selection:bg-[#FF6B9E] selection:text-white">
       
       {/* 1. Header (Sticky) */}
       <Header
@@ -312,14 +324,14 @@ function AppContent() {
       {/* POPUPS, DRAWER, AND MODALS                           */}
       {/* ==================================================== */}
 
-      {/* Cart Drawer (Page 7-10) */}
+      {/* Cart Drawer */}
       <CartDrawer
         isOpen={isCartOpen}
         onClose={() => setIsCartOpen(false)}
         onCheckoutSuccess={handleCheckoutSuccess}
       />
 
-      {/* History Modal & Reset Confirmation (Page 12-14) */}
+      {/* History Modal & Reset Confirmation */}
       <HistoryModal
         isOpen={isHistoryOpen}
         onClose={() => setIsHistoryOpen(false)}
@@ -327,13 +339,13 @@ function AppContent() {
         onResetAll={handleResetAll}
       />
 
-      {/* Notifications Modal (Page 15-16) */}
+      {/* Notifications Modal */}
       <NotificationsModal
         isOpen={isNotifOpen}
         onClose={() => setIsNotifOpen(false)}
       />
 
-      {/* Detail Menu Modal (Page 3) */}
+      {/* Detail Menu Modal */}
       <InfoModal
         isOpen={!!selectedInfoItem}
         onClose={() => setSelectedInfoItem(null)}
@@ -341,7 +353,7 @@ function AppContent() {
         comments={selectedInfoItem ? (commentsData[selectedInfoItem.id] || []) : []}
       />
 
-      {/* Comment Modal (Page 4-6) */}
+      {/* Comment Modal */}
       <CommentModal
         isOpen={!!selectedCommentItem}
         onClose={() => setSelectedCommentItem(null)}
@@ -350,7 +362,7 @@ function AppContent() {
         onSubmitComment={handleSubmitComment}
       />
 
-      {/* Receipt Modal (Page 11) */}
+      {/* Receipt Modal */}
       <ReceiptModal
         isOpen={isReceiptOpen}
         onClose={() => setIsReceiptOpen(false)}

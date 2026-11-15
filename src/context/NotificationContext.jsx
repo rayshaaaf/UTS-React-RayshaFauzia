@@ -7,7 +7,7 @@ const initialNotifications = [
   {
     id: 1,
     type: 'order',
-    message: 'Pesanan KKU-20261115-001 berhasil dibayar.',
+    message: 'Pesanan ROSE-20261115-001 berhasil dibayar.',
     time: 'Baru saja',
     unread: true,
     timestamp: 1731670000000
@@ -15,7 +15,7 @@ const initialNotifications = [
   {
     id: 2,
     type: 'promo',
-    message: 'Promo UTS25 diterapkan. Hemat Rp 18.000.',
+    message: 'Voucher UTS25 diterapkan. Hemat 25%!',
     time: '2 menit lalu',
     unread: true,
     timestamp: 1731669880000
@@ -23,7 +23,7 @@ const initialNotifications = [
   {
     id: 3,
     type: 'cart',
-    message: 'Cafe Latte ditambahkan ke keranjang.',
+    message: 'Sweet Heart Macarons masuk ke keranjang.',
     time: '5 menit lalu',
     unread: true,
     timestamp: 1731669700000
@@ -31,31 +31,31 @@ const initialNotifications = [
   {
     id: 4,
     type: 'comment',
-    message: 'Komentar Cafe Latte berhasil dikirim.',
-    time: '10 menit lalu',
+    message: 'Ulasan Sweet Heart Macarons berhasil dikirim.',
+    time: '12 menit lalu',
     unread: false,
     timestamp: 1731669400000
   },
   {
     id: 5,
     type: 'favorite',
-    message: 'Cafe Latte dihapus dari favorit.',
-    time: '15 menit lalu',
+    message: 'Signature Iced Cocoa ditambahkan ke favorit.',
+    time: '20 menit lalu',
     unread: false,
     timestamp: 1731669100000
   },
   {
     id: 6,
     type: 'reset',
-    message: 'Stok dan riwayat berhasil direset.',
-    time: 'Kemarin, 08.00',
+    message: 'Stok dan riwayat pesanan berhasil direset.',
+    time: 'Kemarin, 09.00',
     unread: false,
     timestamp: 1731580800000
   }
 ];
 
 export function NotificationProvider({ children }) {
-  const [notifications, setNotifications] = useLocalStorage('kopiku_notifications', initialNotifications);
+  const [notifications, setNotifications] = useLocalStorage('rose_cafe_notifications', initialNotifications);
 
   const addNotification = (type, title, message) => {
     const newNotif = {

@@ -17,7 +17,7 @@ export default function StarRating({ rating = 0, onRatingChange, interactive = f
               onClick={() => onRatingChange && onRatingChange(starValue)}
               onMouseEnter={() => setHoverRating(starValue)}
               onMouseLeave={() => setHoverRating(0)}
-              className="p-0.5 focus:outline-none transition-transform hover:scale-110 cursor-pointer"
+              className="p-0.5 focus:outline-none transition-transform hover:scale-125 cursor-pointer"
               title={`${starValue} Bintang`}
             >
               <Star
@@ -25,8 +25,8 @@ export default function StarRating({ rating = 0, onRatingChange, interactive = f
                 strokeWidth={1.5}
                 className={`transition-colors duration-150 ${
                   isFilled
-                    ? 'text-[#B8805F] fill-[#B8805F]'
-                    : 'text-[#5A2E1B]/40 fill-transparent hover:text-[#B8805F]'
+                    ? 'text-[#EE4B82] fill-[#FF6B9E]'
+                    : 'text-[#FFB8D2] fill-transparent hover:text-[#EE4B82]'
                 }`}
               />
             </button>
@@ -38,7 +38,7 @@ export default function StarRating({ rating = 0, onRatingChange, interactive = f
             key={starValue}
             size={size}
             strokeWidth={1.5}
-            className={`${isFilled ? 'text-[#B8805F] fill-[#B8805F]' : 'text-gray-300 fill-transparent'}`}
+            className={`${isFilled ? 'text-[#EE4B82] fill-[#FF6B9E]' : 'text-[#FFD4E5] fill-transparent'}`}
           />
         );
       })}

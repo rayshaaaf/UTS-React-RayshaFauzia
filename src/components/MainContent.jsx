@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, Heart, ChevronDown } from 'lucide-react';
+import { Search, Heart, ChevronDown, Sparkles, Coffee, Cake, Croissant as CroissantIcon } from 'lucide-react';
 import MenuCard from './MenuCard';
 
 export default function MainContent({
@@ -24,76 +24,137 @@ export default function MainContent({
     Semua: 15,
     Kopi: 4,
     'Non-Kopi': 4,
-    Makanan: 3,
-    Snack: 4,
+    Bakery: 3,
+    Cakes: 4,
     Favorit: favorites.length
   };
 
-  const categories = ['Semua', 'Kopi', 'Non-Kopi', 'Makanan', 'Snack', 'Favorit'];
+  const categories = ['Semua', 'Kopi', 'Non-Kopi', 'Bakery', 'Cakes', 'Favorit'];
 
-  // Sorting label mapping
   const sortLabels = {
-    default: 'Urutkan menu',
-    'price-asc': 'Harga',
-    'rating': 'Rating',
-    'name': 'Nama',
-    'fav-newest': 'Favorit terbaru',
-    'fav-oldest': 'Favorit terlama'
+    default: 'Urutkan Menu',
+    'price-asc': 'Harga Terendah',
+    'rating': 'Rating Tertinggi',
+    'name': 'Nama (A-Z)',
+    'fav-newest': 'Favorit Terbaru',
+    'fav-oldest': 'Favorit Terlama'
   };
 
-  // Subtitle logic
-  let subtitleText = '15 menu untuk menemani harimu.';
+  let subtitleText = '15 pilihan kopi segar & artisan pastry lezat untuk harimu.';
   if (searchQuery.trim()) {
     subtitleText = `${menuList.length} menu ditemukan untuk “${searchQuery}”.`;
   } else if (currentCategory === 'Favorit') {
-    subtitleText = 'Menu favoritmu, dalam satu tempat.';
+    subtitleText = 'Menu favorit pilihanmu, tersimpan rapi dalam satu tempat.';
   }
 
   return (
     <div className="w-full">
       
       {/* ==================================================== */}
-      {/* 1. HERO BANNER (Full-width banner image)             */}
+      {/* 1. CHILL HERO SECTION (Cute Pastel Café Vibes)       */}
       {/* ==================================================== */}
-      <section className="w-full bg-[#5A2E1B] overflow-hidden">
-        <div className="max-w-[1440px] mx-auto">
-          <img
-            src="/images/hero-banner.jpg"
-            alt="Order Coffee - Welcome"
-            className="w-full h-auto object-cover max-h-[460px] select-none block"
-            onError={(e) => {
-              // Fallback to high quality latte banner
-              e.target.src = "https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=1600&q=80";
-            }}
-          />
+      <section className="relative w-full bg-gradient-to-b from-[#FFE4EE]/70 via-[#FFF0F5] to-[#FFF2F6] pt-10 pb-16 px-6 lg:px-14 overflow-hidden border-b border-[#FFD4E5]/80">
+        
+        {/* Soft Background Blur Blobs */}
+        <div className="absolute -top-16 -left-16 w-80 h-80 bg-pink-200/50 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-20 right-10 w-96 h-96 bg-rose-200/40 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="max-w-[1400px] mx-auto flex flex-col lg:flex-row items-center justify-between gap-10 relative z-10">
+          
+          {/* Left: Chill Headline & Badges */}
+          <div className="flex-1 max-w-2xl text-center lg:text-left">
+            <div className="inline-flex items-center gap-2 bg-white/90 border border-[#FFD4E5] px-4 py-1.5 rounded-full text-xs font-bold text-[#EE4B82] shadow-xs mb-5">
+              <Sparkles className="w-4 h-4 text-[#EE4B82]" />
+              <span>Sweet Sips &amp; Freshly Baked Love Everyday</span>
+            </div>
+
+            <h1 className="font-brand text-4xl sm:text-6xl font-black text-[#421525] tracking-tight leading-[1.1] mb-3">
+              Chill Vibes, Sweet Treats &amp; <span className="font-serif-italic font-normal text-[#EE4B82]">Warm Bakes.</span>
+            </h1>
+
+            <p className="text-sm sm:text-base text-[#7D4759] leading-relaxed max-w-xl mx-auto lg:mx-0 mb-6 font-normal">
+              Nikmati perpaduan kopi artisan, minuman dingin menyegarkan, hingga aneka pastry &amp; cake manis yang dibuat hangat setiap hari.
+            </p>
+
+            {/* Cute highlight chips */}
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5">
+              <span className="bg-white/80 border border-[#FFD4E5] px-3.5 py-1.5 rounded-full text-xs font-semibold text-[#421525] flex items-center gap-1.5 shadow-2xs">
+                <Coffee className="w-3.5 h-3.5 text-[#EE4B82]" /> Specialty Brew
+              </span>
+              <span className="bg-white/80 border border-[#FFD4E5] px-3.5 py-1.5 rounded-full text-xs font-semibold text-[#421525] flex items-center gap-1.5 shadow-2xs">
+                <CroissantIcon className="w-3.5 h-3.5 text-[#EE4B82]" /> Fresh Bakery
+              </span>
+              <span className="bg-white/80 border border-[#FFD4E5] px-3.5 py-1.5 rounded-full text-xs font-semibold text-[#421525] flex items-center gap-1.5 shadow-2xs">
+                <Cake className="w-3.5 h-3.5 text-[#EE4B82]" /> Artisan Cakes
+              </span>
+            </div>
+          </div>
+
+          {/* Right: Showcase Poster Cards with Cute Floating Stickers */}
+          <div className="flex-shrink-0 relative flex items-center justify-center gap-4">
+            
+            {/* Card 1: Heart Macaron */}
+            <div className="w-48 sm:w-56 bg-white p-3 rounded-3xl shadow-xl shadow-pink-200/60 border border-[#FFD4E5] transform -rotate-3 hover:rotate-0 transition-transform duration-300">
+              <div className="w-full h-48 sm:h-56 rounded-2xl overflow-hidden bg-[#FFE4EE]">
+                <img
+                  src="/images/heart-macaron.jpg"
+                  alt="Sweet Heart Macarons"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="mt-2.5 text-center">
+                <span className="text-[11px] font-bold text-[#EE4B82] uppercase tracking-wider block">Best Seller</span>
+                <span className="font-brand font-bold text-sm text-[#421525]">Sweet Heart Macarons</span>
+              </div>
+            </div>
+
+            {/* Card 2: Iced Cocoa Float */}
+            <div className="w-48 sm:w-56 bg-white p-3 rounded-3xl shadow-xl shadow-pink-200/60 border border-[#FFD4E5] transform rotate-3 hover:rotate-0 transition-transform duration-300 -ml-4 sm:-ml-6 mt-8">
+              <div className="w-full h-48 sm:h-56 rounded-2xl overflow-hidden bg-[#FFE4EE]">
+                <img
+                  src="/images/iced-cocoa.jpg"
+                  alt="Signature Iced Cocoa"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="mt-2.5 text-center">
+                <span className="text-[11px] font-bold text-[#EE4B82] uppercase tracking-wider block">Staff Pick</span>
+                <span className="font-brand font-bold text-sm text-[#421525]">Signature Iced Cocoa</span>
+              </div>
+            </div>
+
+          </div>
+
         </div>
       </section>
 
       {/* ==================================================== */}
-      {/* 2. MENU CONTENT (1440px Container)                   */}
+      {/* 2. MENU SECTION (Categories, Filter, 4-Col Grid)     */}
       {/* ==================================================== */}
-      <section className="max-w-[1440px] mx-auto px-8 lg:px-16 pt-12 pb-16">
+      <section className="max-w-[1400px] mx-auto px-6 lg:px-14 pt-12 pb-16">
         
         {/* Section Heading */}
-        <div className="mb-8">
-          <div className="flex items-baseline gap-3 mb-1">
-            <h2 className="font-heading text-4xl sm:text-5xl font-black text-[#5A2E1B]">
-              Menu
-            </h2>
-            <span className="font-serif-italic text-3xl sm:text-4xl text-[#5A2E1B]">
-              drinks
-            </span>
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+          <div>
+            <div className="flex items-baseline gap-2.5 mb-1">
+              <h2 className="font-brand text-3xl sm:text-4xl font-black text-[#421525]">
+                Our Sweet
+              </h2>
+              <span className="font-serif-italic text-3xl sm:text-4xl text-[#EE4B82]">
+                Menu &amp; Bakes
+              </span>
+            </div>
+            <p className="text-sm text-[#7D4759] font-normal">
+              {subtitleText}
+            </p>
           </div>
-          <p className="text-sm text-[#5A2E1B]/75 font-normal">
-            {subtitleText}
-          </p>
         </div>
 
         {/* Filter Pills & Sort Dropdown */}
         <div className="flex flex-wrap items-center justify-between gap-4 mb-10">
           
           {/* Category Tabs */}
-          <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
+          <div className="flex flex-wrap items-center gap-2.5">
             {categories.map((cat) => {
               const count = categoryCounts[cat] ?? 0;
               const isActive = currentCategory === cat;
@@ -102,10 +163,10 @@ export default function MainContent({
                 <button
                   key={cat}
                   onClick={() => onSelectCategory(cat)}
-                  className={`rounded-full px-5 py-2 text-sm font-medium transition-all cursor-pointer ${
+                  className={`rounded-full px-5 py-2.5 text-xs sm:text-sm font-bold transition-all cursor-pointer ${
                     isActive
-                      ? 'bg-[#B8805F] text-white shadow-xs'
-                      : 'border border-[#B8805F]/60 text-[#5A2E1B] bg-transparent hover:bg-[#FAD1D4]'
+                      ? 'bg-gradient-to-r from-[#FF6B9E] to-[#EE4B82] text-white shadow-md shadow-pink-300/40 scale-102'
+                      : 'bg-white border border-[#FFD4E5] text-[#421525] hover:bg-[#FFEBF2] hover:border-[#FF6B9E] shadow-2xs'
                   }`}
                 >
                   {cat} ({count})
@@ -118,10 +179,10 @@ export default function MainContent({
           <div className="relative">
             <button
               onClick={() => setIsSortOpen(!isSortOpen)}
-              className="flex items-center gap-2 border border-[#B8805F]/60 rounded-full px-5 py-2 text-sm font-medium text-[#5A2E1B] bg-white/50 hover:bg-white transition-colors cursor-pointer"
+              className="flex items-center gap-2 bg-white border border-[#FFD4E5] hover:border-[#FF6B9E] rounded-full px-5 py-2.5 text-xs sm:text-sm font-bold text-[#421525] shadow-2xs transition-colors cursor-pointer"
             >
-              <span>{sortOption === 'default' ? 'Urutkan menu' : `Urutkan: ${sortLabels[sortOption] || 'menu'}`}</span>
-              <ChevronDown className="w-4 h-4 text-[#5A2E1B]" />
+              <span>{sortLabels[sortOption] || 'Urutkan Menu'}</span>
+              <ChevronDown className="w-4 h-4 text-[#EE4B82]" />
             </button>
 
             {isSortOpen && (
@@ -130,13 +191,14 @@ export default function MainContent({
                   className="fixed inset-0 z-20" 
                   onClick={() => setIsSortOpen(false)}
                 />
-                <div className="absolute right-0 mt-2 w-48 bg-white rounded-2xl shadow-xl border border-[#E8DCCB] py-2 z-30 animate-fade-in text-sm">
+                <div className="absolute right-0 mt-2 w-52 bg-white rounded-2xl shadow-xl border border-[#FFD4E5] py-2 z-30 animate-fade-in text-xs font-semibold">
                   {[
-                    { id: 'price-asc', label: 'Harga' },
-                    { id: 'rating', label: 'Rating' },
-                    { id: 'name', label: 'Nama' },
-                    { id: 'fav-newest', label: 'Favorit terbaru' },
-                    { id: 'fav-oldest', label: 'Favorit terlama' }
+                    { id: 'default', label: 'Default Rekomendasi' },
+                    { id: 'price-asc', label: 'Harga Terendah' },
+                    { id: 'rating', label: 'Rating Tertinggi' },
+                    { id: 'name', label: 'Nama (A-Z)' },
+                    { id: 'fav-newest', label: 'Favorit Terbaru' },
+                    { id: 'fav-oldest', label: 'Favorit Terlama' }
                   ].map((opt) => (
                     <button
                       key={opt.id}
@@ -144,8 +206,8 @@ export default function MainContent({
                         onSortChange(opt.id);
                         setIsSortOpen(false);
                       }}
-                      className={`w-full text-left px-5 py-2.5 hover:bg-[#FFF3F1] transition-colors cursor-pointer ${
-                        sortOption === opt.id ? 'font-bold text-[#B8805F] bg-[#FFF3F1]' : 'text-[#5A2E1B]'
+                      className={`w-full text-left px-5 py-2.5 hover:bg-[#FFF0F5] transition-colors cursor-pointer ${
+                        sortOption === opt.id ? 'font-bold text-[#EE4B82] bg-[#FFEBF2]' : 'text-[#421525]'
                       }`}
                     >
                       {opt.label}
@@ -161,30 +223,30 @@ export default function MainContent({
         {/* Menu Grid or Empty States */}
         {menuList.length === 0 ? (
           searchQuery.trim() !== '' ? (
-            /* Search Empty State (Page 18) */
-            <div className="py-24 text-center flex flex-col items-center justify-center">
-              <Search className="w-8 h-8 text-[#5A2E1B]/60 mb-4" strokeWidth={1.5} />
-              <h3 className="font-heading text-2xl font-bold text-[#5A2E1B] mb-2">
-                Menu tidak ditemukan
+            /* Search Empty State */
+            <div className="py-20 text-center flex flex-col items-center justify-center bg-white rounded-3xl p-8 border border-[#FFD4E5] shadow-xs">
+              <Search className="w-8 h-8 text-[#EE4B82] mb-3" strokeWidth={1.5} />
+              <h3 className="font-brand text-2xl font-bold text-[#421525] mb-1.5">
+                Menu Tidak Ditemukan
               </h3>
-              <p className="text-sm text-[#5A2E1B]/70 max-w-md">
-                Coba kata kunci lain atau cari nama menu favoritmu.
+              <p className="text-xs sm:text-sm text-[#7D4759] max-w-md">
+                Tidak ada menu yang cocok dengan kata kunci “{searchQuery}”. Coba cari kata kunci lainnya.
               </p>
             </div>
           ) : (
-            /* Favorite Empty State (Page 19) */
-            <div className="py-24 text-center flex flex-col items-center justify-center">
-              <Heart className="w-8 h-8 text-[#5A2E1B]/60 mb-4" strokeWidth={1.5} />
-              <h3 className="font-heading text-2xl font-bold text-[#5A2E1B] mb-2">
-                Belum ada menu favorit
+            /* Favorite Empty State */
+            <div className="py-20 text-center flex flex-col items-center justify-center bg-white rounded-3xl p-8 border border-[#FFD4E5] shadow-xs">
+              <Heart className="w-8 h-8 text-[#EE4B82] mb-3" strokeWidth={1.5} />
+              <h3 className="font-brand text-2xl font-bold text-[#421525] mb-1.5">
+                Belum Ada Menu Favorit
               </h3>
-              <p className="text-sm text-[#5A2E1B]/70 max-w-md">
-                Ketuk ikon hati pada menu yang kamu suka.
+              <p className="text-xs sm:text-sm text-[#7D4759] max-w-md">
+                Ketuk ikon hati pada menu kesukaanmu untuk menyimpannya di sini.
               </p>
             </div>
           )
         ) : (
-          /* 4-Column Desktop Menu Grid */
+          /* 4-Column Responsive Grid */
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {menuList.map((item) => {
               const inCart = cartItems.find((c) => c.id === item.id);
@@ -210,73 +272,61 @@ export default function MainContent({
       </section>
 
       {/* ==================================================== */}
-      {/* 3. PROMO SECTION ("New drink / a little treat")       */}
+      {/* 3. PROMO SECTION (Chill Special Treat & Vouchers)    */}
       {/* ==================================================== */}
-      <section className="w-full bg-[#FAD1D4] py-14 px-8 lg:px-16 overflow-hidden">
-        <div className="max-w-[1440px] mx-auto flex flex-col lg:flex-row items-center justify-between gap-10">
+      <section className="w-full bg-gradient-to-r from-[#FFEBF2] via-[#FFDCE8] to-[#FFEBF2] py-12 px-6 lg:px-14 border-t border-[#FFD4E5]">
+        <div className="max-w-[1400px] mx-auto flex flex-col lg:flex-row items-center justify-between gap-8">
           
           {/* Left: Text & Vouchers */}
-          <div className="flex-1 max-w-xl text-left">
-            <div className="mb-4">
-              <h3 className="font-heading text-4xl sm:text-5xl font-black text-[#5A2E1B] leading-none mb-1">
-                New
-              </h3>
-              <div className="flex items-baseline gap-3">
-                <span className="font-heading text-4xl sm:text-5xl font-black text-[#5A2E1B] leading-none">
-                  drink
-                </span>
-                <span className="font-serif-italic text-2xl sm:text-3xl text-[#5A2E1B]">
-                  a little treat
-                </span>
-              </div>
+          <div className="flex-1 max-w-xl text-center lg:text-left">
+            <div className="inline-flex items-center gap-1.5 bg-white px-3.5 py-1 rounded-full text-xs font-bold text-[#EE4B82] mb-3 shadow-2xs border border-[#FFD4E5]">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Promo Spesial Hari Ini</span>
             </div>
 
-            <h4 className="font-bold text-xl sm:text-2xl text-[#5A2E1B] mt-5 mb-1.5">
-              Coconut Iced Latte
-            </h4>
-            <p className="text-sm text-[#5A2E1B]/80 leading-relaxed max-w-md mb-6">
-              Kopi creamy dengan sentuhan kelapa yang lembut.
+            <h3 className="font-brand text-3xl sm:text-4xl font-black text-[#421525] mb-1">
+              Sweet Treats, Sweet Deals! 🎀
+            </h3>
+            
+            <p className="text-xs sm:text-sm text-[#7D4759] mb-5">
+              Gunakan kode voucher favoritmu untuk menikmati diskon spesial saat checkout:
             </p>
 
-            {/* Promo Code Chips */}
-            <div>
-              <span className="text-xs text-[#5A2E1B] font-semibold block mb-2.5">
-                Pakai kode favoritmu:
-              </span>
-              <div className="flex items-center gap-3">
-                {['UTS25', 'HEMAT10', 'KOPI15'].map((code) => (
-                  <button
-                    key={code}
-                    onClick={() => onApplyPromoCode(code)}
-                    className="bg-white hover:bg-[#B8805F] text-[#5A2E1B] hover:text-white font-bold text-xs px-5 py-2 rounded-full shadow-xs transition-colors cursor-pointer"
-                  >
-                    {code}
-                  </button>
-                ))}
-              </div>
+            {/* Voucher Chips */}
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5">
+              {[
+                { code: 'UTS25', disc: 'Diskon 25%' },
+                { code: 'HEMAT10', disc: 'Diskon 10%' },
+                { code: 'MANIS15', disc: 'Diskon 15%' }
+              ].map(({ code, disc }) => (
+                <button
+                  key={code}
+                  onClick={() => onApplyPromoCode(code)}
+                  className="bg-white hover:bg-[#EE4B82] text-[#421525] hover:text-white border border-[#FFD4E5] hover:border-[#EE4B82] px-4 py-2 rounded-2xl shadow-xs transition-all cursor-pointer flex items-center gap-2 group"
+                >
+                  <span className="font-brand font-black text-xs text-[#EE4B82] group-hover:text-white">{code}</span>
+                  <span className="text-[11px] font-medium text-[#7D4759] group-hover:text-white/90">({disc})</span>
+                </button>
+              ))}
             </div>
           </div>
 
-          {/* Right: Price & Real Drink Photo */}
-          <div className="flex items-center gap-8 lg:gap-12 flex-shrink-0">
-            <div className="text-right">
-              <div className="font-heading font-black text-3xl sm:text-4xl text-[#5A2E1B]">
-                Rp 29.000
-              </div>
-              <div className="text-base sm:text-lg text-[#5A2E1B]/60 line-through font-medium">
-                Rp 35.000
-              </div>
-            </div>
-
-            <div className="w-56 h-56 sm:w-64 sm:h-64 rounded-3xl overflow-hidden shadow-lg bg-white/40">
+          {/* Right: Featured Item Photo */}
+          <div className="flex items-center gap-5 sm:gap-6 bg-white/90 backdrop-blur-sm p-4 rounded-3xl border border-[#FFD4E5] shadow-lg shadow-pink-200/50">
+            <div className="w-24 h-24 rounded-2xl overflow-hidden bg-[#FFE4EE] flex-shrink-0">
               <img
-                src="/images/promo-latte.jpg"
-                alt="Coconut Iced Latte"
-                className="w-full h-full object-cover rounded-3xl"
-                onError={(e) => {
-                  e.target.src = "https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=800&q=80";
-                }}
+                src="/images/heart-macaron.jpg"
+                alt="Featured Treat"
+                className="w-full h-full object-cover"
               />
+            </div>
+            <div>
+              <span className="text-[10px] font-bold text-[#EE4B82] uppercase tracking-wider block">Featured Sweet</span>
+              <h4 className="font-brand font-bold text-base text-[#421525]">Sweet Heart Macarons</h4>
+              <div className="flex items-baseline gap-2 mt-1">
+                <span className="font-brand font-black text-lg text-[#EE4B82]">Rp 22.000</span>
+                <span className="text-xs text-[#7D4759] line-through">Rp 28.000</span>
+              </div>
             </div>
           </div>
 

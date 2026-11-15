@@ -3,26 +3,26 @@ import { calculateTotals, PROMO_CODES } from '../utils/pricing';
 
 const CartContext = createContext();
 
-const CART_STORAGE_KEY = 'kopiku_cart';
-const PROMO_STORAGE_KEY = 'kopiku_promo';
+const CART_STORAGE_KEY = 'rose_cafe_cart';
+const PROMO_STORAGE_KEY = 'rose_cafe_promo';
 
 const defaultInitialItems = [
   {
-    id: 3,
-    name: "Cafe Latte",
-    category: "Kopi",
-    price: 25000,
-    stock: 12,
-    image: "/images/cafe-latte.jpg",
+    id: 14,
+    name: "Sweet Heart Macarons",
+    category: "Cakes",
+    price: 22000,
+    stock: 16,
+    image: "/images/heart-macaron.jpg",
     quantity: 2
   },
   {
-    id: 9,
-    name: "Croissant",
-    category: "Makanan",
-    price: 22000,
-    stock: 8,
-    image: "/images/croissant.jpg",
+    id: 2,
+    name: "Signature Iced Cocoa",
+    category: "Kopi",
+    price: 26000,
+    stock: 14,
+    image: "/images/iced-cocoa.jpg",
     quantity: 1
   }
 ];

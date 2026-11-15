@@ -12,6 +12,7 @@ export const PROMO_CODES = {
   UTS25: { code: "UTS25", discountPercent: 25, label: "Diskon 25% Spesial UTS" },
   HEMAT10: { code: "HEMAT10", discountPercent: 10, label: "Diskon 10% Hemat Ceria" },
   KOPI15: { code: "KOPI15", discountPercent: 15, label: "Diskon 15% Pecinta Kopi" },
+  MANIS15: { code: "MANIS15", discountPercent: 15, label: "Diskon 15% Sweet Treats" },
 };
 
 // Hitung Diskon
